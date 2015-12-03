@@ -7,8 +7,20 @@ package puntoflotante;
 
 /**
  *
- * @author Javier
+ * @author LosPro
  */
 public class Truncamiento {
-    
+    /**
+         * Función para truncar un número decimal
+         * @param double nD, número que se quiere truncar
+         * @param int nDec, cantidad de decimales
+         * @return double que representa el nuevo número truncado
+         */
+        public double getTruncamiento(double nD, int nDec){
+                if(nD > 0)
+                        nD = Math.floor(nD * Math.pow(10,nDec))/Math.pow(10,nDec);
+                else
+                        nD = Math.ceil(nD * Math.pow(10,nDec))/Math.pow(10,nDec);
+                return nD;
+        }
 }
