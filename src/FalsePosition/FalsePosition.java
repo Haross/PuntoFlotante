@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmos;
+package FalsePosition;
 
 /**
  *
- * @author Javier
+ * @author LosPros
  */
-public class falsePosition {
+public class FalsePosition {
     double  q0,q1;
     double p, p0, p1;
-    falsePosition(){
+    FalsePosition(){
 
         q0 = 0;
         q1 = 0;
@@ -20,7 +20,7 @@ public class falsePosition {
         p1 = 0;
         p0 = 0;
     }
-    falsePosition(double p0, double p1){
+    FalsePosition(double p0, double p1){
         q0 = p0;
         q1 = p1;
         this.p1 = p1;

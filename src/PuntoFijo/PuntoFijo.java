@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmos;
+package PuntoFijo;
 
 /**
  *
  * @author Javier
  */
-public class newtonR {
+public class PuntoFijo {
     
 }

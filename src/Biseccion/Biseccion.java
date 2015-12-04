@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmos;
+package Biseccion;
 
 /**
  *
- * @author Javier
+ * @author LosPros
  */
-public class biseccion {
+public class Biseccion {
 
     double a, b, tol, p;
     int n;
 
-    public biseccion(double a1, double b1, double tol1, int n1) {
+    public Biseccion(double a1, double b1, double tol1, int n1) {
         a = a1;
         b = b1;
         tol = tol1;
@@ -54,7 +54,7 @@ public class biseccion {
     }
 
    /* public static void main(String[] args) {
-        biseccion c = new biseccion(0, 1, 1e-2, 10);
+        Biseccion c = new Biseccion(0, 1, 1e-2, 10);
         double raiz = c.calculoRaiz();
         System.out.println("La raiz es: " + raiz);
     }*/

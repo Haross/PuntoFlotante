@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmos;
+package Secante;
 
 /**
  *
  * @author Javier
  */
-public class secante {
+public class Secante {
     
 }
