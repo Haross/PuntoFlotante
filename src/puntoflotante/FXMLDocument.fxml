@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puntoflotante.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="340.0" prefWidth="327.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="puntoflotante.FXMLDocumentController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <Button fx:id="button" layoutX="100.0" layoutY="257.0" onAction="#Biseccion" text="Método de Bisección" />
+      <Text layoutX="115.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="110.0" layoutY="212.0" text="Newton Raphson" />
+      <Button layoutX="129.0" layoutY="129.0" text="Punto Fijo" />
+      <Button layoutX="133.0" layoutY="85.0"  text="Secante" />
+      <Button layoutX="119.0" layoutY="170.0"  text="Falsa Posición" />
     </children>
 </AnchorPane>
