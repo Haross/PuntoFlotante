@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="469.0" prefWidth="530.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Biseccion.FXMLBiseccionController">
+    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="469.0" stroke="WHITE" strokeType="INSIDE" width="538.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="151.0" layoutX="12.0" layoutY="14.0" stroke="#dadada" strokeType="INSIDE" width="514.0" />
+      <Button fx:id="btnCalcular" layoutX="427.0" layoutY="33.0" mnemonicParsing="false" onAction="#calculoRaiz" prefHeight="25.0" prefWidth="73.0" text="Calcular" />
+      <Label layoutX="369.0" layoutY="37.0" text=" = 0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="44.0" layoutY="37.0" text="f (x) =">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="343.0" layoutY="80.0" text="Tolerancia = ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="142.0" layoutY="79.0" text="[                      ,                      ]">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtFuncion" layoutX="86.0" layoutY="33.0" prefHeight="25.0" prefWidth="268.0" />
+      <Label layoutX="44.0" layoutY="80.0" text="Intervalo [a,b] = ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtA" layoutX="150.0" layoutY="77.0" prefHeight="25.0" prefWidth="73.0" />
+      <TextField fx:id="txtB" layoutX="239.0" layoutY="77.0" prefHeight="25.0" prefWidth="73.0" />
+      <TextField fx:id="txtTol" layoutX="427.0" layoutY="76.0" prefHeight="25.0" prefWidth="73.0" />
+      <Label layoutX="44.0" layoutY="126.0" text="Iteraciones Máximas = ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtN" layoutX="184.0" layoutY="122.0" prefHeight="25.0" prefWidth="73.0" />
+      <Label layoutX="274.0" layoutY="126.0" text="Raíz = ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtRaiz" layoutX="319.0" layoutY="122.0" prefHeight="25.0" prefWidth="181.0" />
+      <TextArea fx:id="txtArea" editable="false" layoutX="12.0" layoutY="178.0" prefHeight="281.0" prefWidth="514.0" />
+      <AnchorPane fx:id="anchorPane" layoutX="14.0" layoutY="172.0" prefHeight="287.0" prefWidth="514.0" visible="false" />
+      <Label fx:id="lblArea" layoutX="78.0" layoutY="204.0" />
+   </children>
+</AnchorPane>
