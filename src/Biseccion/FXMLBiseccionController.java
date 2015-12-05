@@ -5,10 +5,13 @@
  */
 package Biseccion;
 
+import Interpretador.Interpretador;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -29,14 +32,15 @@ public class FXMLBiseccionController implements Initializable {
     private TextArea txtArea;
     @FXML
     private Label lblArea;
-
+    Interpretador interpretador;
     
     double p;
 
     private double f(double x) {
-
-        double r = Math.pow(x, 3) - (7 * Math.pow(x, 2)) + (14 * x) - 6;
-        return r;
+        //double r = Math.pow(x, 3)+ 4*Math.pow(x, 2)-10;
+        //return r;
+       // double r = Math.pow(x, 3) - (7 * Math.pow(x, 2)) + (14 * x) - 6;
+       return interpretador.getResultado(x);
     }
 
     @FXML
@@ -59,7 +63,8 @@ public class FXMLBiseccionController implements Initializable {
             }
             i = i + 1;
             ba = Math.abs(p - pa) / p;
-            
+            //Primero limpiamos el text area para eliminar lo que se calculo anteriormente.
+            txtArea.setText(null);
             txtArea.setText(txtArea.getText()+"Iteracion " + i
                     + "\n\t" + "P= " + p+"\n\tF(p)= " + f(p)+"\n\ta= " + a+"\n\tb= " + b+
                     "\n\tF(a)= " + f(a)+"\n\n");
@@ -77,7 +82,20 @@ public class FXMLBiseccionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        interpretador = new Interpretador();
+        btnCalcular.setOnMousePressed((e)->{
+            if(!interpretador.checarParentesis(txtFuncion.getText())){
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Información");
+                alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
+
+                alert.showAndWait();
+                            }else{
+                interpretador.setFuncion(txtFuncion.getText());
+            }
+        
+        
+        });
     }    
     
 }
