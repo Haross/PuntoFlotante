@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author Javier
  */
-public class FXMLDocumentController implements Initializable {
+public class FXMLDocumentController2 implements Initializable {
     
     private void openWindowWithOption(String file) {
         Stage stage = new Stage();
@@ -31,7 +31,7 @@ public class FXMLDocumentController implements Initializable {
 
             root = FXMLLoader.load(getClass().getResource(file));
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLDocumentController2.class.getName()).log(Level.SEVERE, null, ex);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);

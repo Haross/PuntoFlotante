@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author LosPros
  */
-public class PuntoFlotante extends Application {
+public class PuntoFlotante2 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
