@@ -45,7 +45,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML private void FalsePosition(){
-       
+       openWindowWithOption("/FalsePosition/FXMLFalsePosition.fxml");
     }
     
     @FXML private void NewtonR(){
