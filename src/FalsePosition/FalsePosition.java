@@ -13,7 +13,6 @@ public class FalsePosition {
     double  q0,q1;
     double p, p0, p1;
     FalsePosition(){
-
         q0 = 0;
         q1 = 0;
         p = 0;

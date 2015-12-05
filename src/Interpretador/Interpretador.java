@@ -9,10 +9,11 @@ import java.util.Stack;
  */
 public class Interpretador {
     
-    private final String PI = "3.14159265359";
+    private final String PI = "3.141592653589793";
     private final String e = "2.71828182846";
 
     String funcion;
+     String funcionAux = "";
     int tipo = 3;
     int k = 5;
 
@@ -58,6 +59,7 @@ public class Interpretador {
     public void setFuncion(String funcion) {
         ToPostfix a = new ToPostfix(funcion);
         this.funcion = a.getPostfix();
+        funcionAux = this.funcion;
     }
 
     /**
@@ -67,10 +69,13 @@ public class Interpretador {
      */
     public double getResultado(double x) {
         //Se reemplaza el valor de x, así como también valores de PI y e que existan en la expresión.
-        String funcionAux = funcion.replaceAll("x", ""+x);
+        funcionAux = funcion.replaceAll("x", ""+x); 
+        return getResultado();
+    }
+    
+    public double getResultado(){
         funcionAux = funcionAux.replaceAll("PI",PI);
         funcionAux = funcionAux.replaceAll("e",e);
-
         double resultado = 0;
 
         String[] post = funcionAux.split(" ");
@@ -102,7 +107,6 @@ public class Interpretador {
         resultado = getValue(resultado);
         return resultado;
     }
-
     private double evaluar(String op, String n2, String n1) {
         double num1 = Double.parseDouble(n1);
         double num2 = Double.parseDouble(n2);
@@ -160,28 +164,26 @@ public class Interpretador {
      * lo cumple.
      */
     public boolean checarParentesis(String funcion) {
-        Stack<String> pila = new Stack<String>();
-        int i = 0;
-        while (i < funcion.length()) {  // Recorremos la expresión carácter a carácter
-            if (funcion.charAt(i) == '(') {
-                pila.push("(");
-            } // Si el paréntesis es de apertura apilamos siempre                               
-            else if (funcion.charAt(i) == ')') {  // Si el paréntesis es de cierre actuamos según el caso
-                if (!pila.empty()) {
-                    pila.pop();
-                } // Si la pila no está vacía desapilamos
-                else {
-                    pila.push(")");
-                    break;
-                } // La pila no puede empezar con un cierre, apilamos y salimos
-            }
-            i++;
-        }
-        if (pila.empty()) {
-            return true;
-        } else {
-            return false;
-        }
+        Stack<String> aux = new Stack<String>();
+        int i=0;
+		while(i<funcion.length()){
+			char caracter = funcion.charAt(i);
+			if(caracter == '('){
+				aux.push(caracter+"");
+			}
+			if(caracter == ')'){
+				if(aux.isEmpty()){
+					return false;
+				}else{
+					aux.pop();	
+				}
+				
+			}
+			i++;
+		}
+		if(aux.isEmpty())
+			return true;
+		return false;
     }
 
     /**

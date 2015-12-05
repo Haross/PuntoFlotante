@@ -45,14 +45,49 @@ public class FXMLBiseccionController implements Initializable {
 
     @FXML
     public void calculoRaiz() {
+         //Primero limpiamos el text area para eliminar lo que se calculo anteriormente.
+            txtArea.setText("");
         double a = Double.parseDouble(txtA.getText());
         double b = Double.parseDouble(txtB.getText());
         double tol = Double.parseDouble(txtTol.getText());
         int n = Integer.parseInt(txtN.getText());
         double p = a;
-        int i = 0;
-        double ba = 1;
-
+        int i = 1;
+        double FA = f(a);
+        while(i <= n){
+            p = a+(b-a)/2;
+            double FP = f(p);
+            
+            txtArea.setText(txtArea.getText()+"Iteracion " + i
+                    + "\n\t" + "P= " + p+"\n\tF(p)= " + f(p)+"\n\ta= " + a+"\n\tb= " + b+
+                    "\n\tF(a)= " + f(a)+"\n\n");
+            
+            System.out.println("-------Iteracion " + i + "--------");
+            System.out.println("P= " + p);
+            System.out.println("F(p)= " + f(p));
+            System.out.println("a= " + a);
+            System.out.println("b= " + b);
+            System.out.println("F(a)= " + f(a));
+            System.out.println("---------------------------");
+            if(FP == 0 || (b-a)/2 < tol){
+                txtRaiz.setText(p+"");
+                return;
+            }
+            //Esta condición se puso por si se quiere obtener el valor de una P especifica
+            if(n == i){
+                txtRaiz.setText(p+"");
+                return;
+            }
+            i = i+1;
+            if(FA*FP > 0){
+                a = p;
+                FA = FP;
+            }else{
+                b = p;
+            }
+        }
+        
+      /*  double ba = 1;
         while (f(p) != 0 & i <= n & ba > tol) {
             double pa = p;
             p = (a + b) / 2;
@@ -76,8 +111,8 @@ public class FXMLBiseccionController implements Initializable {
             System.out.println("b= " + b);
             System.out.println("F(a)= " + f(a));
             System.out.println("---------------------------");
-        }
-        txtRaiz.setText(p+"");
+        }*/
+        //txtRaiz.setText(p+"");
     }
     
     @Override
