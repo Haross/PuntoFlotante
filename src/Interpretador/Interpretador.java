@@ -17,13 +17,13 @@ public class Interpretador {
     public Interpretador() {
         funcion = "";
     }
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("introduzca ecuacion");
         String b = input.nextLine();
         Interpretador a = new Interpretador(b);
         System.out.println(a.getResultado(2));
-    }
+    }*/
 
     public Interpretador(String funcion) {
         setFuncion(funcion);
