@@ -9,7 +9,7 @@ package PuntoFlotante;
  *
  * @author LosPros 
  */
-public class Redondeo2 {
+public class Redondeo {
 
     public double setRedondeo(double numero, int digitos) {
         int cifras = (int) Math.pow(10, digitos);

@@ -9,7 +9,7 @@ package PuntoFlotante;
  *
  * @author LosPros
  */
-public class Truncamiento2 {
+public class Truncamiento {
 
     /**
      * Función para truncar un número decimal
