@@ -30,7 +30,6 @@ public class FXMLBinaryController implements Initializable {
     private TextArea txtArea;
     
     String f;
-
     
     @FXML
     public void principal(ActionEvent e) {
@@ -73,7 +72,6 @@ public class FXMLBinaryController implements Initializable {
             e.consume();
         }
     }
-    
 
     public double revisaS(int s) {
         double s1 = s;
@@ -95,7 +93,6 @@ public class FXMLBinaryController implements Initializable {
                 m = m + Math.pow((0.5), i + 1);
                 System.out.println("(1/2)^" + (i + 1));
                 txtArea.setText(txtArea.getText()+"\n(1/2)^" + (i + 1) +" = " + m);
-
             }
         }
         return m;
