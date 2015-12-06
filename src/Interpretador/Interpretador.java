@@ -129,15 +129,15 @@ public class Interpretador {
 
             if (op.equals("+")) {
                 operacion = num1.add(num2);
-                expresiones.add(num1+" + "+num2 +" = " + operacion );
+                expresiones.add(num1+" + "+num2 +" = " + getValue(operacion) );
             }
             if (op.equals("-")) {
                 operacion = num1.subtract(num2); 
-                expresiones.add(num1+" - "+num2 +" = " + operacion );
+                expresiones.add(num1+" - "+num2 +" = " + getValue(operacion));
             }
             if (op.equals("*")) {
                 operacion = num1.multiply(num2);
-                expresiones.add(num1+" * "+num2 +" = " + operacion );
+                expresiones.add(num1+" * "+num2 +" = " + getValue(operacion) );
             }
             if (op.equals("/")) {
                 MathContext mc = new MathContext(k, RoundingMode.DOWN);
@@ -147,11 +147,11 @@ public class Interpretador {
                 }
                operacion = num1.divide(num2, mc);
                 //double oper = getValue(num1.doubleValue()/num2.doubleValue());
-                expresiones.add(num1+" / "+num2 +" = " + operacion );
+                expresiones.add(num1+" / "+num2 +" = " + getValue(operacion) );
             }
             if (op.equals("^")) {
                 operacion = num1.pow(num2.intValue());
-                expresiones.add(num1+"^"+num2 +" = " + operacion );
+                expresiones.add(num1+"^"+num2 +" = " + getValue(operacion) );
             }
        return operacion.doubleValue();
     }
