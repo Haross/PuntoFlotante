@@ -11,4 +11,64 @@ package Secante;
  */
 public class Secante {
     
+    int i;
+    double q0,q1,p0,p1,p, fp;
+    
+    Secante(){
+       i=0; 
+       q0= 0;
+       q1= 0;
+       p0= 0;
+       p1= 0;
+       p= 0;
+       
+    }
+    
+     Secante(double p0, double p1){
+        q0 = p0;
+        q1 = p1;
+        this.p1 = p1;
+        this.p0 = p0;
+        p = 0;
+    }
+     
+    public void setP1(double p1){
+         this.p1 = p1;
+          q1 = p1;
+    }
+    
+    public void setP0(double p0){
+         this.p0 = p0;
+          q0 = p0;
+    }
+    
+    
+    public double calculoRaiz(double TOL, int N){
+        int i = 2;
+        while (i<= N){
+            p = p1 -q1*(p1-p0)/(q1-q0);
+            if(p-p1 < TOL){
+                return p;
+            }
+            i= i+1;
+            
+            p0 = p1;
+            q0= q1;
+            p1 = p;
+            q1 = fp;
+        }
+        return p;
+    }
+        
+    private double funcion(double p){
+        return p;
+    }
+    
+    public void setFuncion(String f){
+        
+    }
+    
+    
+    
+    
 }
