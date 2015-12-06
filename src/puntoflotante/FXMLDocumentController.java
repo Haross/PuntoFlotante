@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -27,13 +30,15 @@ import javafx.stage.Stage;
  * @author Javier
  */
 public class FXMLDocumentController implements Initializable {
+
     @FXML 
     private Button btnCerrar;
     @FXML
-    private Rectangle LineBar;
+    private Rectangle LineBar, root;
     @FXML
     private MaterialDesignIconView close;
-    
+    private double xOffset = 0;
+    private double yOffset = 0;
     private void openWindowWithOption(String file) {
         Stage stage = new Stage();
         Parent root = null;
@@ -89,6 +94,7 @@ public class FXMLDocumentController implements Initializable {
          btnCerrar.setOnMouseExited((e)->{
          close.setStyle("-fx-fill:WHITE;");
         });
+         
     }    
     
 }
