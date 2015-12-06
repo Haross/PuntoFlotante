@@ -51,6 +51,10 @@ public class FXMLDocumentController implements Initializable {
        openWindowWithOption("/OperacionesFlotantes/OperacionesFlotantes.fxml");
     }
     
+    @FXML private void Binario(){
+       openWindowWithOption("/BinaryMachine/FXMLBinary.fxml");
+    }
+    
     @FXML private void NewtonR(){
        
     }

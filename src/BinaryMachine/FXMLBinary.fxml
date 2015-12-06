@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="528.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="BinaryMachine.FXMLBinaryController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="437.0" layoutY="-1.0" stroke="WHITE" strokeType="INSIDE" width="534.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="117.0" layoutX="14.0" layoutY="11.0" stroke="#d3d3d3" strokeType="INSIDE" width="505.0" />
+      <Text layoutX="69.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="143.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C = Exponente">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="353.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="F = Matisa">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtS" layoutX="39.0" onKeyTyped="#LimtxtAreaS" layoutY="45.0" prefHeight="25.0" prefWidth="66.0" />
+      <TextField fx:id="txtC" layoutX="128.0" onKeyTyped="#LimtxtAreaC" layoutY="45.0" prefHeight="25.0" prefWidth="127.0" />
+      <TextField fx:id="txtF" layoutX="275.0" onKeyTyped="#LimtxtAreaF" layoutY="45.0" prefHeight="25.0" prefWidth="215.0" />
+      <Text layoutX="40.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultado = ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtR" editable="false" layoutX="128.0" layoutY="86.0" prefHeight="25.0" prefWidth="269.0" />
+      <Button fx:id="btnCalcular" layoutX="407.0" layoutY="86.0" mnemonicParsing="false" onAction="#principal" prefHeight="25.0" prefWidth="83.0" text="Calcular" />
+      <TextArea fx:id="txtArea" layoutX="14.0" layoutY="142.0" prefHeight="280.0" prefWidth="505.0" />
+   </children>
+</AnchorPane>
