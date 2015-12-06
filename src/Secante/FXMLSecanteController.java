@@ -41,7 +41,17 @@ public class FXMLSecanteController {
         inter.setFuncion(txtP1.getText());
         return inter.getResultado();
     }
-   
+   public void setFuncion(){
+       if (!interpretador.checarParentesis(txtFuncion.getText())) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Información");
+                alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
+
+                alert.showAndWait();
+            } else {
+                interpretador.setFuncion(txtFuncion.getText());
+            }
+   }
     
     
     @FXML
@@ -49,6 +59,7 @@ public class FXMLSecanteController {
         txtArea.setText("");
         double p0 = getValueP0();
         double p1 = getValueP1();
+        setFuncion();
         double tol = Double.parseDouble(txtTol.getText());
         int N = Integer.parseInt(txtN.getText());
         int i = 2;
@@ -81,17 +92,7 @@ public class FXMLSecanteController {
     }
 
     public void initialize(URL url, ResourceBundle rb) {
-        btnCalcular.setOnMousePressed((e) -> {
-            if (!interpretador.checarParentesis(txtFuncion.getText())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Información");
-                alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
-
-                alert.showAndWait();
-            } else {
-                interpretador.setFuncion(txtFuncion.getText());
-            }
-        });
+        
     }
     
 }

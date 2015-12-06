@@ -74,7 +74,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML private void Secante(){
-       
+       openWindowWithOption("/Secante/FXMLSecante.fxml");
     }
     
     @FXML private void Binario(){
