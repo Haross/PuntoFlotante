@@ -52,7 +52,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML private void NewtonR(){
-       
+       openWindowWithOption("/NewtonR/Newton.fxml");
     }
     
     @FXML private void PuntoFijo(){
