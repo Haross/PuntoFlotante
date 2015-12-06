@@ -40,6 +40,7 @@ public class OperacionesFlotantesController implements Initializable {
         }
     }
     private void setOperaciones(){
+        txtArea.setText("");
         ArrayList aux = interprete.getOperaciones();
         int i = 0;
         while(i < aux.size()){
@@ -50,6 +51,7 @@ public class OperacionesFlotantesController implements Initializable {
 
     @FXML
     private void calcular() {
+        
         if (interprete.checarParentesis(txtFuncion.getText())) {
             interprete.setFuncion(txtFuncion.getText());
             if(truncamiento.isSelected()){
