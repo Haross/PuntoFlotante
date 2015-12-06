@@ -1,7 +1,5 @@
-//Conversión de notación Infija a Postfija mediante uso de pilas
 package Interpretador;
 
-import java.util.Scanner;
 import java.util.Stack;
 
 /**
@@ -20,20 +18,27 @@ public class ToPostfix {
         String[] arrayInfix = funcion.split(" ");
 
         //Declaración de las pilas
-        Stack< String> E = new Stack< String>(); //Pila entrada
-        Stack< String> P = new Stack< String>(); //Pila temporal para operadores
-        Stack< String> S = new Stack< String>(); //Pila salida
+        Stack< String> Infija = new Stack< String>(); //Pila entrada
+        Stack< String> TempO = new Stack< String>(); //Pila temporal para operadores
+        Stack< String> Postfija = new Stack< String>(); //Pila salida
 
         //Añadir la array a la Pila de entrada (E)
         for (int i = arrayInfix.length - 1; i >= 0; i--) {
-            E.push(arrayInfix[i]);
+            Infija.push(arrayInfix[i]);
         }
         try {
             //Algoritmo Infijo a Postfijo
-            while (!E.isEmpty()) {
-                switch (pref(E.peek())) {
+            while (!Infija.isEmpty()) {
+                switch (getJerarquia(Infija.peek())) {
                     case 1:
-                        P.push(E.pop());
+                        TempO.push(Infija.pop());
+                        break;
+                    case 2:
+                        while (!TempO.peek().equals("(")) {
+                            Postfija.push(TempO.pop());
+                        }
+                        TempO.pop();
+                        Infija.pop();
                         break;
                     case 3:
                     case 4:
@@ -45,116 +50,107 @@ public class ToPostfix {
                     case 10:
                     case 11:
                     case 12:
-                        while (pref(P.peek()) >= pref(E.peek())) {
-                            S.push(P.pop());
+                        while (getJerarquia(TempO.peek()) >= getJerarquia(Infija.peek())) {
+                            Postfija.push(TempO.pop());
                         }
-                        P.push(E.pop());
+                        TempO.push(Infija.pop());
                         break;
-                    case 2:
-                        while (!P.peek().equals("(")) {
-                            S.push(P.pop());
-                        }
-                        P.pop();
-                        E.pop();
-                        break;
+                    
                     default:
-                        S.push(E.pop());
+                        Postfija.push(Infija.pop());
                 }
             }
-
-            //Eliminacion de `impurezas´ en la expresiones algebraicas
-            String postfix = S.toString().replaceAll("[\\]\\[,]", "");
-
+            String postfix = Postfija.toString().replaceAll("[\\]\\[,]", "");
             return postfix;
 
         } catch (Exception ex) {
-
         }
         return "";
     }
 
     //Jerarquia de los operadores
-    private int pref(String op) {
-        int prf = 99; //default
+    private int getJerarquia(String op) {
+        int jerarquia = 99;
         if (op.equals("ln")) {
-            prf = 13;
+            jerarquia = 13;
         }
         if (op.equals("csc")) {
-            prf = 12;
+            jerarquia = 12;
         }
         if (op.equals("sec")) {
-            prf = 11;
+            jerarquia = 11;
         }
         if (op.equals("cot")) {
-            prf = 10;
+            jerarquia = 10;
         }
         if (op.equals("log")) {
-            prf = 9;
+            jerarquia = 9;
         }
         if (op.equals("tan")) {
-            prf = 8;
+            jerarquia = 8;
         }
         if (op.equals("cos")) {
-            prf = 7;
+            jerarquia = 7;
         }
         if (op.equals("sin")) {
-            prf = 6;
+            jerarquia = 6;
         }
         if (op.equals("^")) {
-            prf = 5;
+            jerarquia = 5;
         }
         if (op.equals("*") || op.equals("/")) {
-            prf = 4;
+            jerarquia = 4;
         }
         if (op.equals("+") || op.equals("-")) {
-            prf = 3;
+            jerarquia = 3;
         }
         if (op.equals(")")) {
-            prf = 2;
+            jerarquia = 2;
         }
         if (op.equals("(")) {
-            prf = 1;
+            jerarquia = 1;
         }
-        return prf;
+        return jerarquia;
     }
 
     //Depurar expresión algebraica
 
     private String depurar(String s) {
-        s = s.replaceAll("\\s+", ""); //Elimina espacios en blanco
+        String expresion = "";
+        s = s.replaceAll("\\s+", ""); 
         s = "(" + s + ")";
         String simbols = "+-*/()^";
         String trig = "sincostanloglnseccsccot";
-        String str = "";
-
-        //Deja espacios entre operadores
+        
         for (int i = 0; i < s.length(); i++) {
+                    //Deja espacios entre operadores
             if (simbols.contains("" + s.charAt(i))) {
-                str += " " + s.charAt(i) + " ";
+                expresion += " " + s.charAt(i) + " ";
 
             } else {
 
                 try {
+                            //Deja espacios entre operadores
                     if("ln".equals(""+s.charAt(i)+s.charAt(i+1))){
-                         str += " " + s.charAt(i) + s.charAt(i + 1) +" ";
+                         expresion += " " + s.charAt(i) + s.charAt(i + 1) +" ";
                          i++;
                     }else{
                         if (trig.contains("" + s.charAt(i) + s.charAt(i + 1) + s.charAt(i + 2))) {
-                            str += " " + s.charAt(i) + s.charAt(i + 1) + s.charAt(i + 2) + " ";
+                            expresion += " " + s.charAt(i) + s.charAt(i + 1) + s.charAt(i + 2) + " ";
 
                             i = i + 2;
 
                         } else {
-                            str += s.charAt(i);
+                            expresion += s.charAt(i);
 
                         }
                     }
                 } catch (Exception e) {
-                    str += s.charAt(i);
+                    expresion += s.charAt(i);
                 }
             }
         }
-        return str.replaceAll("\\s+", " ").trim();
+        return expresion.replaceAll("\\s+", " ").trim();
     }
 
 }

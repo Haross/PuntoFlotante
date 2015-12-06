@@ -50,7 +50,7 @@ public class Interpretador {
 
     /**
      *
-     * @param k establece el valor del kernel. El valor por default es 7
+     * @param k establece el valor de la mantisa. El valor por default es 7
      *
      */
     public void setK(int k) {
@@ -78,41 +78,41 @@ public class Interpretador {
         return getResultado();
     }
     
-    public double getResultado(){
+    public void setConstantes(){
         expresiones = new ArrayList();
         funcionAux = funcionAux.replaceAll("PI",PI);
         funcionAux = funcionAux.replaceAll("e",e);
+    }
+    
+    public double getResultado(){
+        setConstantes();
         double resultado = 0;
 
-        String[] post = funcionAux.split(" ");
+        String[] operaciones = funcionAux.split(" ");
 
-        //Declaración de las pilas
-        Stack< String> E = new Stack< String>(); //Pila entrada
-        Stack< String> P = new Stack< String>(); //Pila de operandos
-        //Añadir post (array) a la Pila de entrada (E)
-        for (int i = post.length - 1; i >= 0; i--) {
-            E.push(post[i]);
+        Stack< String> EntradaO = new Stack< String>(); //Entrada de datos
+        Stack< String> Operandos = new Stack< String>(); //Operandos
+
+        
+        for (int i = operaciones.length - 1; i >= 0; i--) {
+            EntradaO.push(operaciones[i]);
         }
 
-        //Algoritmo de Evaluación Postfija
         String operadores = "+-*/^";
         String trigonometricos = "tansincosloglncscseccot";
-        while (!E.isEmpty()) {
-            if (operadores.contains("" + E.peek())) {
-                P.push(evaluar(E.pop(), P.pop(), P.pop()) + "");
+        while (!EntradaO.isEmpty()) {
+            if (operadores.contains("" + EntradaO.peek())) {
+                Operandos.push(evaluar(EntradaO.pop(), Operandos.pop(), Operandos.pop()) + "");
             } else {
-                if (trigonometricos.contains("" + E.peek())) {
-
-                    P.push(evaluar(E.pop(), P.pop()) + "");
+                if (trigonometricos.contains("" + EntradaO.peek())) {
+                    Operandos.push(evaluar(EntradaO.pop(), Operandos.pop()) + "");
                 } else {
-
-                    P.push(E.pop());
+                    Operandos.push(EntradaO.pop());
                 }
             }
         }
-        resultado = Double.parseDouble(P.peek());
-        resultado = getValue(resultado);
-        return resultado;
+        resultado = Double.parseDouble(Operandos.peek());
+        return getValue(resultado);
     }
     
     public ArrayList getOperaciones(){
@@ -120,67 +120,62 @@ public class Interpretador {
     }
     
     private double evaluar(String op, String n2, String n1) {
-
         BigDecimal num1 = new BigDecimal(n1);
         BigDecimal num2 = new BigDecimal(n2);
         num1 = getValue(num1);
         num2 = getValue(num2);
         BigDecimal operacion = new BigDecimal(0);
 
-            if (op.equals("+")) {
+        switch(op){
+            case "+":
                 operacion = num1.add(num2);
                 expresiones.add(num1+" + "+num2 +" = " + getValue(operacion) );
-            }
-            if (op.equals("-")) {
+                break;
+            case "-":
                 operacion = num1.subtract(num2); 
                 expresiones.add(num1+" - "+num2 +" = " + getValue(operacion));
-            }
-            if (op.equals("*")) {
+                break;
+            case "*":
                 operacion = num1.multiply(num2);
                 expresiones.add(num1+" * "+num2 +" = " + getValue(operacion) );
-            }
-            if (op.equals("/")) {
+                break;   
+            case "/":
                 MathContext mc = new MathContext(k, RoundingMode.DOWN);
                 if(tipo == 2){
                      mc = new MathContext(k,  RoundingMode.UP);
                    
                 }
                operacion = num1.divide(num2, mc);
-                //double oper = getValue(num1.doubleValue()/num2.doubleValue());
                 expresiones.add(num1+" / "+num2 +" = " + getValue(operacion) );
-            }
-            if (op.equals("^")) {
+                break;
+            case "^":
                 operacion = num1.pow(num2.intValue());
                 expresiones.add(num1+"^"+num2 +" = " + getValue(operacion) );
-            }
+                break;      
+        }
        return operacion.doubleValue();
     }
 
     private double evaluar(String op, String n1) {
         double num1 = Double.parseDouble(n1);
-        if (op.equals("sin")) {
-            return getValue(Math.sin(getValue(num1)));
-        }
-        if (op.equals("cos")) {
-            return getValue(Math.cos(getValue(num1)));
-        }
-        if (op.equals("log")) {
-            return getValue(Math.log10(getValue(num1)));
-        }
-        if (op.equals("ln")) {
-            return getValue(Math.log(getValue(num1)));
-        }
-        if (op.equals("tan")) {
-            return getValue(Math.tan(getValue(num1)));
-        }
-        if (op.equals("cot")) {
-            return getValue(getValue(Math.cos(getValue(num1))) / getValue(Math.sin(getValue(num1))));
-        }
-        if (op.equals("csc")) {
-            return getValue(1 / getValue(Math.sin(getValue(num1))));
-        }
-        if (op.equals("sec")) {
-            return getValue(1 / getValue(Math.cos(getValue(num1))));
+        switch(op){
+            case "sin":
+                return getValue(Math.sin(getValue(num1)));
+            case "cos":
+                return getValue(Math.cos(getValue(num1)));
+            case "log":
+                 return getValue(Math.log10(getValue(num1)));
+            case "ln":
+                return getValue(Math.log(getValue(num1)));
+            case "tan":
+                return getValue(Math.tan(getValue(num1)));
+            case "cot":
+                return getValue(getValue(Math.cos(getValue(num1))) / getValue(Math.sin(getValue(num1))));
+            case "csc":
+                 return getValue(1 / getValue(Math.sin(getValue(num1))));
+            case "sec":
+                return getValue(1 / getValue(Math.cos(getValue(num1))));
+                
         }
         return 0;
     }
