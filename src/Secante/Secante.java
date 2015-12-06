@@ -32,17 +32,30 @@ public class Secante {
         p = 0;
     }
      
+    /**
+     *
+     * @param p1
+     */
     public void setP1(double p1){
          this.p1 = p1;
           q1 = p1;
     }
     
+    /**
+     *
+     * @param p0
+     */
     public void setP0(double p0){
          this.p0 = p0;
           q0 = p0;
     }
     
-    
+    /**
+     *
+     * @param TOL
+     * @param N
+     * @return
+     */
     public double calculoRaiz(double TOL, int N){
         int i = 2;
         while (i<= N){
@@ -64,6 +77,10 @@ public class Secante {
         return p;
     }
     
+    /**
+     *
+     * @param f
+     */
     public void setFuncion(String f){
         
     }

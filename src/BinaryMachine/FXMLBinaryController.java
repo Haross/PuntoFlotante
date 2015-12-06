@@ -31,6 +31,10 @@ public class FXMLBinaryController implements Initializable {
     
     String f;
     
+    /**
+     *
+     * @param e
+     */
     @FXML
     public void principal(ActionEvent e) {
         double r;
@@ -73,6 +77,11 @@ public class FXMLBinaryController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public double revisaS(int s) {
         double s1 = s;
         if (s == 0) {
@@ -85,6 +94,10 @@ public class FXMLBinaryController implements Initializable {
         return s1;
     }
 
+    /**
+     *
+     * @return
+     */
     public double matiza() {
         System.out.println("Matt: "+f);
         double m = 0.000;

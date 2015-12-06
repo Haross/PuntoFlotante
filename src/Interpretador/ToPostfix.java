@@ -10,10 +10,18 @@ public class ToPostfix {
 
     String funcion;
 
+    /**
+     *
+     * @param funcion
+     */
     public ToPostfix(String funcion) {
         this.funcion = depurar(funcion);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPostfix() {
         String[] arrayInfix = funcion.split(" ");
 

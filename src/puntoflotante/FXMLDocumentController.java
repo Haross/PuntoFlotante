@@ -98,6 +98,10 @@ public class FXMLDocumentController implements Initializable {
          setDragWindow();
       
     }    
+
+    /**
+     *
+     */
     public void setDragWindow(){
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override

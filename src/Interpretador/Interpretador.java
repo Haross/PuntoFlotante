@@ -78,12 +78,19 @@ public class Interpretador {
         return getResultado();
     }
     
+    /**
+     *
+     */
     public void setConstantes(){
         expresiones = new ArrayList();
         funcionAux = funcionAux.replaceAll("PI",PI);
         funcionAux = funcionAux.replaceAll("e",e);
     }
     
+    /**
+     *
+     * @return
+     */
     public double getResultado(){
         setConstantes();
         double resultado = 0;
@@ -115,6 +122,10 @@ public class Interpretador {
         return getValue(resultado);
     }
     
+    /**
+     *
+     * @return
+     */
     public ArrayList getOperaciones(){
         return expresiones;
     }
@@ -182,6 +193,7 @@ public class Interpretador {
 
     /**
      *
+     * @param funcion
      * @return regresa true si cumple con el formato del parentesis, false si no
      * lo cumple.
      */
