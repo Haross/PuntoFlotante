@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package puntoflotante;
+package PuntoFlotante;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,6 +46,9 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML private void FalsePosition(){
        openWindowWithOption("/FalsePosition/FXMLFalsePosition.fxml");
+    }
+    @FXML private void Operaciones(){
+       openWindowWithOption("/OperacionesFlotantes/OperacionesFlotantes.fxml");
     }
     
     @FXML private void NewtonR(){
