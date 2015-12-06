@@ -1,6 +1,10 @@
 
 package Interpretador;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -13,7 +17,8 @@ public class Interpretador {
     private final String e = "2.71828182846";
 
     String funcion;
-     String funcionAux = "";
+    String funcionAux = "";
+    ArrayList expresiones = new ArrayList();
     int tipo = 3;
     int k = 5;
 
@@ -74,11 +79,13 @@ public class Interpretador {
     }
     
     public double getResultado(){
+        expresiones = new ArrayList();
         funcionAux = funcionAux.replaceAll("PI",PI);
         funcionAux = funcionAux.replaceAll("e",e);
         double resultado = 0;
 
         String[] post = funcionAux.split(" ");
+
         //Declaración de las pilas
         Stack< String> E = new Stack< String>(); //Pila entrada
         Stack< String> P = new Stack< String>(); //Pila de operandos
@@ -107,26 +114,46 @@ public class Interpretador {
         resultado = getValue(resultado);
         return resultado;
     }
+    
+    public ArrayList getOperaciones(){
+        return expresiones;
+    }
+    
     private double evaluar(String op, String n2, String n1) {
-        double num1 = Double.parseDouble(n1);
-        double num2 = Double.parseDouble(n2);
+
+        BigDecimal num1 = new BigDecimal(n1);
+        BigDecimal num2 = new BigDecimal(n2);
+        num1 = getValue(num1);
+        num2 = getValue(num2);
+        BigDecimal operacion = new BigDecimal(0);
 
             if (op.equals("+")) {
-                return (getValue(num1) + getValue(num2));
+                operacion = num1.add(num2);
+                expresiones.add(num1+" + "+num2 +" = " + operacion );
             }
             if (op.equals("-")) {
-                return (getValue(num1) - getValue(num2));
+                operacion = num1.subtract(num2); 
+                expresiones.add(num1+" - "+num2 +" = " + operacion );
             }
             if (op.equals("*")) {
-                return (getValue(num1) * getValue(num2));
+                operacion = num1.multiply(num2);
+                expresiones.add(num1+" * "+num2 +" = " + operacion );
             }
             if (op.equals("/")) {
-                return (getValue(num1) / getValue(num2));
+                MathContext mc = new MathContext(k, RoundingMode.DOWN);
+                if(tipo == 2){
+                     mc = new MathContext(k,  RoundingMode.UP);
+                   
+                }
+               operacion = num1.divide(num2, mc);
+                //double oper = getValue(num1.doubleValue()/num2.doubleValue());
+                expresiones.add(num1+" / "+num2 +" = " + operacion );
             }
             if (op.equals("^")) {
-                return getValue(Math.pow(getValue(num1), num2));
+                operacion = num1.pow(num2.intValue());
+                expresiones.add(num1+"^"+num2 +" = " + operacion );
             }
-        return 0;
+       return operacion.doubleValue();
     }
 
     private double evaluar(String op, String n1) {
@@ -190,7 +217,7 @@ public class Interpretador {
      * Función para truncar o redondear un número dependiendo de la variable
      * truncamiento.
      *
-     * @param double numero, número que se quiere truncar
+     * @param numero, número que se quiere truncar
      *
      * @return double que representa el nuevo número truncado
      */
@@ -213,5 +240,28 @@ public class Interpretador {
         }
  
     }
+    /**
+     * Función para truncar o redondear un número dependiendo de la variable
+     * truncamiento.
+     *
+     * @param numero, número que se quiere truncar
+     *
+     * @return numero regresa un numero en BigDecimal.
+     */
+    public BigDecimal getValue(BigDecimal numero) {
+        switch (tipo){
+            case 1: 
+            return numero.setScale(k, RoundingMode.DOWN);
+            case 2: 
+                
+                return numero.setScale(k, BigDecimal.ROUND_HALF_UP);
+            case 3: 
+            default:
+                return numero;
+               
+        }
+ 
+    }
+
 
 }
