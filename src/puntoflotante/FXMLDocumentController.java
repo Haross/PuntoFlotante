@@ -5,6 +5,7 @@
  */
 package PuntoFlotante;
 
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +17,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
@@ -24,6 +27,12 @@ import javafx.stage.Stage;
  * @author Javier
  */
 public class FXMLDocumentController implements Initializable {
+    @FXML 
+    private Button btnCerrar;
+    @FXML
+    private Rectangle LineBar;
+    @FXML
+    private MaterialDesignIconView close;
     
     private void openWindowWithOption(String file) {
         Stage stage = new Stage();
@@ -69,7 +78,17 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        btnCerrar.setOnMouseClicked((e)->{
+        System.exit(0);  
+        
+        });
+        btnCerrar.setOnMouseEntered((e)->{
+         close.setStyle("-fx-fill:RED;");
+         LineBar.setStyle("-fx-fill:RED;");
+        });
+         btnCerrar.setOnMouseExited((e)->{
+         close.setStyle("-fx-fill:WHITE;");
+        });
     }    
     
 }
