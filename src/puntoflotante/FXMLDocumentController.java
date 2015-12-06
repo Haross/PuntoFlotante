@@ -51,12 +51,8 @@ public class FXMLDocumentController implements Initializable {
        openWindowWithOption("/OperacionesFlotantes/OperacionesFlotantes.fxml");
     }
     
-    @FXML private void Binario(){
-       openWindowWithOption("/BinaryMachine/FXMLBinary.fxml");
-    }
-    
     @FXML private void NewtonR(){
-       
+       openWindowWithOption("/NewtonR/Newton.fxml");
     }
     
     @FXML private void PuntoFijo(){
@@ -67,9 +63,17 @@ public class FXMLDocumentController implements Initializable {
        
     }
     
+    @FXML private void Binario(){
+       openWindowWithOption("/BinaryMachine/FXMLBinary.fxml");
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
     
 }
+
+    
+  
+

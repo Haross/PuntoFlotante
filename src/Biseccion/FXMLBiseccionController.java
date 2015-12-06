@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
  */
 public class FXMLBiseccionController implements Initializable {
 
-     @FXML
+    @FXML
     private Button btnCalcular;
     @FXML
     private TextField txtFuncion, txtA, txtB, txtTol, txtN, txtRaiz;
