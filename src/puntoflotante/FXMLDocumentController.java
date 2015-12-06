@@ -93,9 +93,27 @@ public class FXMLDocumentController implements Initializable {
         });
          btnCerrar.setOnMouseExited((e)->{
          close.setStyle("-fx-fill:WHITE;");
+         LineBar.setStyle("-fx-fill:#4bc55d;");
         });
-         
+         setDragWindow();
+      
     }    
+    public void setDragWindow(){
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = btnCerrar.getScene().getWindow().getX() - event.getScreenX();
+                yOffset = btnCerrar.getScene().getWindow().getY() - event.getScreenY();
+            }
+        });
+      root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                btnCerrar.getScene().getWindow().setX(event.getScreenX() + xOffset);
+                btnCerrar.getScene().getWindow().setY(event.getScreenY() + yOffset);
+            }
+        });
+    }
     
 }
 
