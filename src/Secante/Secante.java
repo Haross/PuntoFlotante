@@ -7,7 +7,7 @@ package Secante;
 
 /**
  *
- * @author Javier
+ * @author Diana
  */
 public class Secante {
     
@@ -33,8 +33,9 @@ public class Secante {
     }
      
     /**
-     *
-     * @param p1
+     *este metodo nos sirve para hacer asiganacion de p1 en q1
+     * @param p1 es nuestro segundo valor introducido por el usuario
+     * 
      */
     public void setP1(double p1){
          this.p1 = p1;
@@ -42,8 +43,8 @@ public class Secante {
     }
     
     /**
-     *
-     * @param p0
+     *este metodo nos sirve para hacer asiganacion de p0 en q0
+     * @param p0 es nuestro primer valor introducido por el usuario
      */
     public void setP0(double p0){
          this.p0 = p0;
@@ -51,10 +52,13 @@ public class Secante {
     }
     
     /**
-     *
-     * @param TOL
-     * @param N
-     * @return
+     *este es el metodo principal en el cual se realiza el calculo de raices con el metodo de la secante 
+     * para ello se calcula el valor de p y de ahi se verifica si se cumple la condicion de la Tolerancia o no 
+     * luego se procede a hacer asignaciones correspondientes
+     * @param TOL esta es la variable de la Tolerancia que nos ayuda como variable de paro 
+     * @param N esta variable nos indica el numero de iteraciones 
+     * @return este metodo nos retorna el valor de p en donde se cumpla la condicion de paro o hasta el 
+     * numero de iteraciones indicadas
      */
     public double calculoRaiz(double TOL, int N){
         int i = 2;
@@ -72,14 +76,15 @@ public class Secante {
         }
         return p;
     }
-        
+     
+    
     private double funcion(double p){
         return p;
     }
     
     /**
      *
-     * @param f
+     * @param f es el string que contiene la funcion introducida por el usuario
      */
     public void setFuncion(String f){
         
