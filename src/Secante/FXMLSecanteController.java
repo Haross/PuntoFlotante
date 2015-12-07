@@ -8,9 +8,11 @@ package Secante;
 import Interpretador.Interpretador;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -23,13 +25,24 @@ public class FXMLSecanteController {
     @FXML
     private Button btnCalcular;
     @FXML
-    private TextField txtP0, txtP1, txtFuncion, txtTol, txtRaiz, txtN;
+    private TextField txtP0, txtP1, txtFuncion, txtTol, txtRaiz, txtN, txtK;
     @FXML
     private TextArea txtArea;
+    @FXML
+    private RadioButton rbtnTruncamiento, rbtnRedondeo;
     Interpretador interpretador = new Interpretador();
     private final String PI = "3.141592653589793";
     
     
+    @FXML private void Borrar(ActionEvent e){
+        txtP0.setText("");
+        txtP1.setText("");
+        txtFuncion.setText("");
+        txtTol.setText("");
+        txtRaiz.setText("");
+        txtN.setText("");
+        txtK.setText("");
+    }
      private double getValueP0(){
         Interpretador inter = new Interpretador();
         inter.setFuncion(txtP0.getText());
