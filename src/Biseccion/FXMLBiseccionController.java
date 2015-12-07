@@ -8,6 +8,7 @@ package Biseccion;
 import Interpretador.Interpretador;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -36,15 +37,32 @@ public class FXMLBiseccionController implements Initializable {
     
     double p;
 
+    /**
+     * Metodo que recibe la funcion y realiza los calculos
+     * @param x recibe el valor de x
+     * @return retorna el resultado de la funcion
+     */
     private double f(double x) {
-        //double r = Math.pow(x, 3)+ 4*Math.pow(x, 2)-10;
-        //return r;
-       // double r = Math.pow(x, 3) - (7 * Math.pow(x, 2)) + (14 * x) - 6;
        return interpretador.getResultado(x);
+    }
+    
+    /**
+     * Metodo que limpia los componentes
+     * @param e 
+     */
+    @FXML
+    private void Borrar(ActionEvent e){
+        txtFuncion.setText("");
+        txtA.setText("");
+        txtB.setText("");
+        txtTol.setText("");
+        txtN.setText("");
+        txtRaiz.setText("");
+        txtArea.setText("");
     }
 
     /**
-     *
+     * Metodo que obtiene los datos y realiza los calculos
      */
     @FXML
     public void calculoRaiz() {
@@ -89,33 +107,6 @@ public class FXMLBiseccionController implements Initializable {
                 b = p;
             }
         }
-        
-      /*  double ba = 1;
-        while (f(p) != 0 & i <= n & ba > tol) {
-            double pa = p;
-            p = (a + b) / 2;
-            if (f(p) * f(a) > 0) {
-                a = p;
-            } else if (f(p) * f(a) < 0) {
-                b = p;
-            }
-            i = i + 1;
-            ba = Math.abs(p - pa) / p;
-            //Primero limpiamos el text area para eliminar lo que se calculo anteriormente.
-            txtArea.setText(null);
-            txtArea.setText(txtArea.getText()+"Iteracion " + i
-                    + "\n\t" + "P= " + p+"\n\tF(p)= " + f(p)+"\n\ta= " + a+"\n\tb= " + b+
-                    "\n\tF(a)= " + f(a)+"\n\n");
-            
-            System.out.println("-------Iteracion " + i + "--------");
-            System.out.println("P= " + p);
-            System.out.println("F(p)= " + f(p));
-            System.out.println("a= " + a);
-            System.out.println("b= " + b);
-            System.out.println("F(a)= " + f(a));
-            System.out.println("---------------------------");
-        }*/
-        //txtRaiz.setText(p+"");
     }
     
     @Override
