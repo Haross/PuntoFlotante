@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="490.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PuntoFijo.StaticController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="151.0" layoutX="22.0" layoutY="24.0" stroke="#dadada" strokeType="INSIDE" width="514.0" />
+      <TextField fx:id="txtFuncion" layoutX="96.0" layoutY="43.0" prefHeight="25.0" prefWidth="268.0" />
+      <Label layoutX="54.0" layoutY="47.0" text="f (x) =">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="379.0" layoutY="47.0" text=" = 0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCalcular" layoutX="437.0" layoutY="43.0" mnemonicParsing="false" onAction="#CalcularValores" prefHeight="25.0" prefWidth="73.0" text="Calcular" />
+      <Label layoutX="111.0" layoutY="143.0" text="Tolerancia = ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTol" layoutX="194.0" layoutY="139.0" prefHeight="25.0" prefWidth="73.0" />
+      <Label layoutX="316.0" layoutY="100.0" text="P0 = ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtP" layoutX="354.0" layoutY="96.0" prefHeight="25.0" prefWidth="73.0" />
+      <Label layoutX="54.0" layoutY="100.0" text="Iteraciones Máximas = ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtN" layoutX="194.0" layoutY="96.0" prefHeight="25.0" prefWidth="73.0" />
+      <TextArea fx:id="txtArea" editable="false" layoutX="22.0" layoutY="188.0" prefHeight="256.0" prefWidth="514.0" />
+      <Button layoutX="243.0" layoutY="453.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="25.0" prefWidth="73.0" text="Borrar" />
+   </children>
+</AnchorPane>
