@@ -107,7 +107,12 @@ public class Interpretador {
 
         String operadores = "+-*/^";
         String trigonometricos = "tansincosloglncscseccot";
+        System.out.println(EntradaO);
         while (!EntradaO.isEmpty()) {
+            if(EntradaO.peek().contains("!")){
+                System.out.println("holisdsns");
+                Operandos.push("-"+EntradaO.pop().replace("!",""));
+            }else{
             if (operadores.contains("" + EntradaO.peek())) {
                 Operandos.push(evaluar(EntradaO.pop(), Operandos.pop(), Operandos.pop()) + "");
             } else {
@@ -116,12 +121,12 @@ public class Interpretador {
                 } else {
                     Operandos.push(EntradaO.pop());
                 }
-            }
+            }}
         }
         resultado = Double.parseDouble(Operandos.peek());
         return getValue(resultado);
     }
-    
+
     /**
      *
      * @return
@@ -153,7 +158,7 @@ public class Interpretador {
             case "/":
                 MathContext mc = new MathContext(k, RoundingMode.DOWN);
                 if(tipo == 2){
-                     mc = new MathContext(k,  RoundingMode.UP);
+                     mc = new MathContext(k,  RoundingMode.HALF_EVEN);
                    
                 }
                operacion = num1.divide(num2, mc);
