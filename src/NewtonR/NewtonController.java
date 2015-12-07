@@ -42,6 +42,9 @@ public class NewtonController implements Initializable {
        return interpretadorD.getResultado(x);
     }
 
+    /**
+     *
+     */
     @FXML
     public void calculoRaiz() {
          //Primero limpiamos el text area para eliminar lo que se calculo anteriormente.

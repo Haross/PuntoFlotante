@@ -41,7 +41,11 @@ public class FXMLSecanteController {
         inter.setFuncion(txtP1.getText());
         return inter.getResultado();
     }
-   public void setFuncion(){
+
+    /**
+     *
+     */
+    public void setFuncion(){
        if (!interpretador.checarParentesis(txtFuncion.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Información");
@@ -91,6 +95,11 @@ public class FXMLSecanteController {
         return interpretador.getResultado(x);
     }
 
+    /**
+     *
+     * @param url
+     * @param rb
+     */
     public void initialize(URL url, ResourceBundle rb) {
         
     }

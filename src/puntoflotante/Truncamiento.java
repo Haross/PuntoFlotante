@@ -14,8 +14,8 @@ public class Truncamiento {
     /**
      * Función para truncar un número decimal
      *
-     * @param double nD, número que se quiere truncar
-     * @param int nDec, cantidad de decimales
+     * @param nD
+     * @param nDec
      * @return double que representa el nuevo número truncado
      */
     public double getTruncamiento(double nD, int nDec) {

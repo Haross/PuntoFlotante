@@ -41,13 +41,24 @@ public class FXMLFalsePositionController implements Initializable {
         inter.setFuncion(txtP0.getText());
         return inter.getResultado();
     }
-    
+    private void setFuncion(){
+        if (!interpretador.checarParentesis(txtFuncion.getText())) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Información");
+                alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
+
+                alert.showAndWait();
+            } else {
+                interpretador.setFuncion(txtFuncion.getText());
+            }
+    }
     
     @FXML
     private void calculoRaiz() {
-        txtArea.setText("");
+       try{ txtArea.setText("");
         double p0 = getValueP0();
         double p1 = getValueP1();
+        setFuncion();
         double tol = Double.parseDouble(txtTol.getText());
         int n = Integer.parseInt(txtN.getText());
         int i = 2;
@@ -73,6 +84,13 @@ public class FXMLFalsePositionController implements Initializable {
             p1 = p;
             q1 = q;
         }
+       }catch(Exception e){
+           Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Información");
+                alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
+
+                alert.showAndWait();
+       }
     }
 
    private double f(double x) {
@@ -81,17 +99,7 @@ public class FXMLFalsePositionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        btnCalcular.setOnMousePressed((e) -> {
-            if (!interpretador.checarParentesis(txtFuncion.getText())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Información");
-                alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
-
-                alert.showAndWait();
-            } else {
-                interpretador.setFuncion(txtFuncion.getText());
-            }
-        });
+        
     }
 
 }

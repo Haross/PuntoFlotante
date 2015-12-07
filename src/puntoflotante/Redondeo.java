@@ -11,6 +11,12 @@ package PuntoFlotante;
  */
 public class Redondeo {
 
+    /**
+     *
+     * @param numero
+     * @param digitos
+     * @return
+     */
     public double setRedondeo(double numero, int digitos) {
         int cifras = (int) Math.pow(10, digitos);
         return Math.rint(numero * cifras) / cifras;
