@@ -8,11 +8,9 @@ package Secante;
 import Interpretador.Interpretador;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -23,32 +21,35 @@ import javafx.scene.control.TextField;
 public class FXMLSecanteController {
     
     @FXML
-    private Button btnCalcular;
+    private Button btnCalcular; //Variables de tipo Button
     @FXML
-    private TextField txtP0, txtP1, txtFuncion, txtTol, txtRaiz, txtN, txtK;
+    private TextField txtP0, txtP1, txtFuncion, txtTol, txtRaiz, txtN; //Variables de tipo TextField
     @FXML
-    private TextArea txtArea;
-    @FXML
-    private RadioButton rbtnTruncamiento, rbtnRedondeo;
-    Interpretador interpretador = new Interpretador();
-    private final String PI = "3.141592653589793";
+    private TextArea txtArea; //Variables de tipo TextArea
+    
+    Interpretador interpretador = new Interpretador();//Instancia de nuestro interprete 
+    private final String PI = "3.141592653589793";// vaor de PI para usarlo en ciertos calculos necesarios 
+    
+     /**
+     *este metodo nos permite corroborar que la funcion introducida por el usuario esta bien escrita 
+     * en caso contrario nos manda un alerta y si esta bien escrita llama nuestro interprete y convierte esa ecuacion 
+     * de tipo String a una ecuacion logica para la computadora 
+     */
     
     
-    @FXML private void Borrar(ActionEvent e){
-        txtP0.setText("");
-        txtP1.setText("");
-        txtFuncion.setText("");
-        txtTol.setText("");
-        txtRaiz.setText("");
-        txtN.setText("");
-        txtK.setText("");
-    }
+    /**
+     * Este metodo nos toma el valor de P0 y con ayuda del interprete lo hace un valor logico para la computadora 
+     * @return el valor de P0 
+     */
      private double getValueP0(){
         Interpretador inter = new Interpretador();
         inter.setFuncion(txtP0.getText());
         return inter.getResultado();
     }
-     
+    /**
+     * Este metodo nos toma el valor de P1 y con ayuda del interprete lo hace un valor logico para la computadora 
+     * @return el valor de P1 
+     */
     private double getValueP1(){
         Interpretador inter = new Interpretador();
         inter.setFuncion(txtP1.getText());
@@ -56,7 +57,9 @@ public class FXMLSecanteController {
     }
 
     /**
-     *
+     *este metodo nos permite corroborar que la funcion introducida por el usuario esta bien escrita 
+     * en caso contrario nos manda un alerta y si esta bien escrita llama nuestro interprete y convierte esa ecuacion 
+     * de tipo String a una ecuacion logica para la computadora 
      */
     public void setFuncion(){
        if (!interpretador.checarParentesis(txtFuncion.getText())) {
@@ -70,6 +73,12 @@ public class FXMLSecanteController {
             }
    }
     
+    /**
+     *
+     * Este metodo nos permite hacer los calculos correspondientes para hacer el calculo de las raices
+     * haciendo uso del metodo de la Secante 
+     * @retun p nos retorna los valores de p que son las raices que el algoritmo va encontrando 
+     */
     
     @FXML
     private void calculoRaiz() {
@@ -103,7 +112,14 @@ public class FXMLSecanteController {
             q1 = fp;
         }
     }
-
+    /**
+     *este metodo nos permite convertir la ecuacion desde un String hasta una ecuacion matematica 
+     * que nos ayuda a realizar las operaciones correspondientes usando un interperete para que la
+     * computadora pueda convertir de String a una funcion matematica.
+     * @param x este parametro es un String que contiene la ecuacion introducida por el usuario 
+     * 
+     * 
+     */
    private double f(double x) {
         return interpretador.getResultado(x);
     }
