@@ -8,8 +8,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="469.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Biseccion.FXMLBiseccionController">
     <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="478.0" stroke="WHITE" strokeType="INSIDE" width="538.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="151.0" layoutX="12.0" layoutY="14.0" stroke="#dadada" strokeType="INSIDE" width="514.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="531.0" stroke="WHITE" strokeType="INSIDE" width="538.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="189.0" layoutX="12.0" layoutY="14.0" stroke="#dadada" strokeType="INSIDE" width="514.0" />
       <Button fx:id="btnCalcular" layoutX="427.0" layoutY="33.0" mnemonicParsing="false" onAction="#calculoRaiz" prefHeight="25.0" prefWidth="73.0" text="Calcular" />
       <Label layoutX="369.0" layoutY="37.0" text=" = 0">
          <font>
@@ -52,9 +52,28 @@
          </font>
       </Label>
       <TextField fx:id="txtRaiz" layoutX="319.0" layoutY="122.0" prefHeight="25.0" prefWidth="181.0" />
-      <TextArea fx:id="txtArea" editable="false" layoutX="12.0" layoutY="178.0" prefHeight="256.0" prefWidth="514.0" />
+      <TextArea fx:id="txtArea" editable="false" layoutX="14.0" layoutY="221.0" prefHeight="256.0" prefWidth="514.0" />
       <AnchorPane fx:id="anchorPane" layoutX="14.0" layoutY="172.0" prefHeight="287.0" prefWidth="514.0" visible="false" />
       <Label fx:id="lblArea" layoutX="78.0" layoutY="204.0" />
-      <Button layoutX="233.0" layoutY="443.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="25.0" prefWidth="73.0" text="Borrar" />
+      <Button layoutX="235.0" layoutY="486.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="25.0" prefWidth="73.0" text="Borrar" />
+      <TextField fx:id="txtK" layoutX="73.0" layoutY="160.0" prefHeight="25.0" prefWidth="181.0" />
+      <Label layoutX="44.0" layoutY="164.0" text="K= ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="rbtnRedondeo" layoutX="417.0" layoutY="164.0" mnemonicParsing="false" text="Redondeo" toggleGroup="$opc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rbtnTruncamiento" layoutX="273.0" layoutY="164.0" mnemonicParsing="false" text="Truncamiento">
+         <toggleGroup>
+            <ToggleGroup />
+         </toggleGroup>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </RadioButton>
    </children>
 </AnchorPane>

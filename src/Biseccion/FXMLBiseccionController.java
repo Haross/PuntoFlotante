@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -28,11 +29,11 @@ public class FXMLBiseccionController implements Initializable {
     @FXML
     private Button btnCalcular;
     @FXML
-    private TextField txtFuncion, txtA, txtB, txtTol, txtN, txtRaiz;
+    private TextField txtFuncion, txtA, txtB, txtTol, txtN, txtRaiz, txtK;
     @FXML
     private TextArea txtArea;
     @FXML
-    private Label lblArea;
+    private RadioButton rbtnTruncamiento, rbtnRedondeo;
     Interpretador interpretador;
     
     double p;
@@ -58,6 +59,7 @@ public class FXMLBiseccionController implements Initializable {
         txtTol.setText("");
         txtN.setText("");
         txtRaiz.setText("");
+        txtK.setText("");
         txtArea.setText("");
     }
 

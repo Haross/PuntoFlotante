@@ -5,12 +5,16 @@
  */
 package BinaryMachine;
 
+import Interpretador.Interpretador;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -21,7 +25,7 @@ import javafx.scene.input.KeyEvent;
  * @author W8
  */
 public class FXMLBinaryController implements Initializable {
-    
+
     @FXML
     private Button btnCalcular;
     @FXML
@@ -29,46 +33,75 @@ public class FXMLBinaryController implements Initializable {
     @FXML
     private TextArea txtArea;
     
+
     String f;
 
     /**
+     * Metodo que verifica que ingresen 1 o 0
+     * @param d se refiere a los numeros ingresados
+     * @return false si no es un 1 o 0
+     */
+    private boolean verifica(String d) {
+        //String d = txtC.getText();
+        System.out.println(d.length());
+        System.out.println(d);
+        for (int i = 0; i < d.length(); i++) {
+            if ((d.charAt(i) == '1')) {
+                return true;
+            } else {
+                if ((d.charAt(i) == '0')) {
+                    return true;
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Info");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Solo se permiten 0 y 1");
+                    alert.showAndWait();
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
      * Metodo principal en el que se realizan los calculos
+     *
      * @param e Evento que se utiliza para realizar el calculo
      */
     @FXML
     public void principal(ActionEvent e) {
-        double r;
-        int s = Integer.parseInt(txtS.getText());
         String c = txtC.getText();
         this.f = txtF.getText();
-        System.out.println("matisa" + f);
-        int exp = Integer.parseInt(c, 2);
-        System.out.println("exp: " + exp);
-        System.out.println("C = " + exp);
-        System.out.println("");
-        double c1 = exp - 1023;
-        System.out.println("C1: " + c1);
-        double m1 = 1 + matiza();
-        System.out.println("M1: " + m1);
-        r = revisaS(s) * Math.pow(2, c1) * m1;
-        txtR.setText(r + "");
-        txtArea.setText(txtArea.getText() + '\n' + "Resultado = " + revisaS(s) + "*" + Math.pow(2, c1) + "*" + m1);
-        System.out.println("Resultado: " + r);
+        if (verifica(c) && verifica(f)) {
+            double r;
+            int s = Integer.parseInt(txtS.getText());
+            int exp = Integer.parseInt(c, 2);
+            double c1 = exp - 1023;
+            double m1 = 1 + matiza();
+            r = revisaS(s) * Math.pow(2, c1) * m1;
+            txtR.setText(r + "");
+            txtArea.setText(txtArea.getText() + '\n' + "Resultado = " + revisaS(s) + "*" + Math.pow(2, c1) + "*" + m1);
+        }
     }
-    
+
     /**
      * Metodo que da el limite de numeros ingresados en S
+     *
      * @param e Recibe el evento de teclado
      */
     @FXML
     private void LimtxtAreaS(KeyEvent e) {
+
         if (txtS.getText().length() >= 1) {
+
             e.consume();
         }
     }
-    
+
     /**
      * Metodo que da el limite de numeros ingresados en C
+     *
      * @param e Recibe el evento de teclado
      */
     @FXML
@@ -77,9 +110,10 @@ public class FXMLBinaryController implements Initializable {
             e.consume();
         }
     }
-    
+
     /**
      * Metodo que da el limite de numeros ingresados en F
+     *
      * @param e Recibe el evento de teclado
      */
     @FXML
@@ -88,13 +122,14 @@ public class FXMLBinaryController implements Initializable {
             e.consume();
         }
     }
-    
+
     /**
      * Metodo que limpia los componentes
-     * @param e 
+     *
+     * @param e
      */
     @FXML
-    private void Borrar(ActionEvent e){
+    private void Borrar(ActionEvent e) {
         txtS.setText("");
         txtC.setText("");
         txtR.setText("");
@@ -104,6 +139,7 @@ public class FXMLBinaryController implements Initializable {
 
     /**
      * Metodo que verifica si la S es un 0 o 1
+     *
      * @param s recibe el numero ingresado
      * @return retorna el calculo con respecto a 1 o -1
      */
@@ -111,16 +147,25 @@ public class FXMLBinaryController implements Initializable {
         double s1 = s;
         if (s == 0) {
             s1 = Math.pow(1, s);
+        } else {
+            if (s == 1) {
+                s1 = Math.pow(-1, s);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Info");
+                alert.setHeaderText(null);
+                alert.setContentText("Solo se permiten 0 y 1");
+                alert.showAndWait();
+            }
         }
-        if (s == 1) {
-            s1 = Math.pow(-1, s);
-        }
+
         System.out.println(s1);
         return s1;
     }
 
     /**
      * Metodo que realiza los calculos de la matiza
+     *
      * @return retorna el resultado del calculo de F
      */
     public double matiza() {
@@ -134,9 +179,11 @@ public class FXMLBinaryController implements Initializable {
         return m;
     }
     
+   
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+
 }
