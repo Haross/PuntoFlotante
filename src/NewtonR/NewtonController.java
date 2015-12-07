@@ -38,6 +38,9 @@ public class NewtonController implements Initializable {
     private double f(double x) {
        return interpretador.getResultado(x);
     }
+    private double fd(double x) {
+       return interpretadorD.getResultado(x);
+    }
 
     @FXML
     public void calculoRaiz() {
@@ -45,10 +48,27 @@ public class NewtonController implements Initializable {
         txtArea.setText("");
         double tol = Double.parseDouble(txtTol.getText());
         int n = Integer.parseInt(txtN.getText());
+        int i = 1;
+        double P0 = Double.parseDouble(txtTol.getText());
+        double P;
+        while (i < n) {            
+            P = P0 - (f(P0)/fd(P0));
+            if (Math.abs(P - P0) < tol) {
+                txtRaiz.setText(p+"");
+                 return;
+            }
+            //(x^3) - (2*x^2)  - 5
+            //(3*x^2) -(4*x) 
+            txtArea.setText(txtArea.getText()+"\n\tIteracion " + i
+            + "\n\t" + "P= " +P+"\n\t" + "P0= " + P0);
+            i = i +1;
+            P0 = P;
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         interpretador = new Interpretador();
+        interpretadorD = new Interpretador();
         btnCalcular.setOnMousePressed((e)->{
             if(!interpretador.checarParentesis(txtFuncion.getText()) && !interpretadorD.checarParentesis(txtFuncionD.getText())){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
