@@ -8,9 +8,11 @@ package Secante;
 import Interpretador.Interpretador;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -23,12 +25,24 @@ public class FXMLSecanteController {
     @FXML
     private Button btnCalcular; //Variables de tipo Button
     @FXML
-    private TextField txtP0, txtP1, txtFuncion, txtTol, txtRaiz, txtN; //Variables de tipo TextField
+    private TextField txtP0, txtP1, txtFuncion, txtTol, txtRaiz, txtN, txtK; //Variables de tipo TextField
+    @FXML
+    private RadioButton rbtnTruncamiento, rbtnRedondeo;
     @FXML
     private TextArea txtArea; //Variables de tipo TextArea
     
     Interpretador interpretador = new Interpretador();//Instancia de nuestro interprete 
     private final String PI = "3.141592653589793";// vaor de PI para usarlo en ciertos calculos necesarios 
+    
+    @FXML private void Borrar(ActionEvent e){
+        txtP0.setText("");
+         txtP1.setText(""); 
+         txtFuncion.setText("");
+          txtTol.setText("");
+           txtRaiz.setText("");
+          txtN.setText("");
+          txtK.setText("");
+    }
     
      /**
      *este metodo nos permite corroborar que la funcion introducida por el usuario esta bien escrita 
