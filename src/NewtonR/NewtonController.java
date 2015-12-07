@@ -41,12 +41,26 @@ public class NewtonController implements Initializable {
     private double fd(double x) {
        return interpretadorD.getResultado(x);
     }
+    private void setFuncion(){
+         if(!interpretador.checarParentesis(txtFuncion.getText()) && !interpretadorD.checarParentesis(txtFuncionD.getText())){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Información");
+                alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
 
+                alert.showAndWait();
+            }else{
+            
+                interpretador.setFuncion(txtFuncion.getText());
+                interpretadorD.setFuncion(txtFuncionD.getText());
+                
+            }
+    }
     /**
      *
      */
     @FXML
     public void calculoRaiz() {
+        setFuncion();
          //Primero limpiamos el text area para eliminar lo que se calculo anteriormente.
         txtArea.setText("");
         double tol = Double.parseDouble(txtTol.getText());
@@ -72,20 +86,7 @@ public class NewtonController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         interpretador = new Interpretador();
         interpretadorD = new Interpretador();
-        btnCalcular.setOnMousePressed((e)->{
-            if(!interpretador.checarParentesis(txtFuncion.getText()) && !interpretadorD.checarParentesis(txtFuncionD.getText())){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Información");
-                alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
 
-                alert.showAndWait();
-            }else{
-                interpretador.setFuncion(txtFuncion.getText());
-                interpretadorD.setFuncion(txtFuncionD.getText());
-            }
-        
-        
-        });
     }    
     
 }

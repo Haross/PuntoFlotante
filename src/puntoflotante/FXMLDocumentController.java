@@ -70,7 +70,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML private void PuntoFijo(){
-       
+       openWindowWithOption("/PuntoFijo/Static.fxml");
     }
     
     @FXML private void Secante(){
