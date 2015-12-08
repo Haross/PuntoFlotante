@@ -165,7 +165,8 @@ public class Interpretador {
                 expresiones.add(num1+" / "+num2 +" = " + getValue(operacion) );
                 break;
             case "^":
-                double oper =getValue(Math.pow(num1.doubleValue(),num2.doubleValue())); 
+                double oper = getValue(Math.pow(num1.doubleValue(),num2.doubleValue())); 
+                System.out.println("valor"+oper);
                 //operacion = num1.pow(num2.intValue());
                 expresiones.add(num1+"^"+num2 +" = " + getValue(oper) );
                 return oper;
@@ -236,8 +237,11 @@ public class Interpretador {
      * @return double que representa el nuevo número truncado
      */
     public double getValue(double numero) {
-        switch (tipo){
+        BigDecimal a = new BigDecimal(numero+"");
+        return getValue(a).doubleValue();
+       /* switch (tipo){
             case 1: 
+                
                  if (numero > 0) {
                 numero = Math.floor(numero * Math.pow(10, k)) / Math.pow(10, k);
             } else {
@@ -251,7 +255,7 @@ public class Interpretador {
             default:
                 return numero;
                
-        }
+        }*/
  
     }
     /**

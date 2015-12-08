@@ -92,6 +92,10 @@ public class FXMLBiseccionController implements Initializable {
         double FA = f(a);
         while(i <= n){
             Interpretador in = new Interpretador();
+            /*if(a<0){
+                in.setFuncion("!"+a+(b+"!"+a)/2+"");
+            }*/
+            System.out.println("holas"+a+(b-a)/2+"");
             in.setFuncion(a+(b-a)/2+"");
             p = in.getResultado();
                     
