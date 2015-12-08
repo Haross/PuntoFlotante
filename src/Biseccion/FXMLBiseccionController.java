@@ -39,8 +39,8 @@ public class FXMLBiseccionController implements Initializable {
     double p;
 
     /**
-     * Metodo que recibe la funcion y realiza los calculos
-     * @param x recibe el valor de x
+     * Metodo que recibe el valor a evaluar en la funcion 
+     * @param x recibe el valor a evaluar
      * @return retorna el resultado de la funcion
      */
     private double f(double x) {
@@ -66,11 +66,20 @@ public class FXMLBiseccionController implements Initializable {
         txtK.setText("");
         txtArea.setText("");
     }
+    
+    /**
+     * Metodo para obtener la K
+    */
     private void getK(){
         if(txtK.getText() != ""){
             interpretador.setK(Integer.parseInt(txtK.getText()));
         }
     }
+    
+    /**
+     * Metodo que selecciona el tipo operacion ya sea
+     * truncamiento o redondeo
+    */
     public void setType(){
         if(rbtnTruncamiento.isSelected()){
                 interpretador.setTipoValores(1);
@@ -80,7 +89,7 @@ public class FXMLBiseccionController implements Initializable {
             getK();
     }
     /**
-     * Metodo que obtiene los datos y realiza los calculos
+     * Metodo que obtiene los datos y realiza los calculos con el metodo de biseccion
      */
     @FXML
     public void calculoRaiz() {
