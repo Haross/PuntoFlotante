@@ -253,7 +253,7 @@ public class FXMLLagrangeController implements Initializable {
 
     private void inicializarCombo() {
 
-        numNodos.setOnAction((e) -> {
+        //numNodos.setOnAction((e) -> {
             num = numNodos.getValue().toString();
             switch (num) {
                 case "4":
@@ -301,7 +301,7 @@ public class FXMLLagrangeController implements Initializable {
                     txty0.setVisible(true);
                     break;
             }
-        });
+        //});
     }
 
 }
