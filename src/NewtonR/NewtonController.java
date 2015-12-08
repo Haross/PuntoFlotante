@@ -72,7 +72,7 @@ public class NewtonController implements Initializable {
     private double fd(double x) {
         if(x<0){
             double x1 = x*-1;
-            return interpretador.getResultado("!"+x1);
+            return interpretadorD.getResultado("!"+x1);
         }
        return interpretadorD.getResultado(x);
     }
