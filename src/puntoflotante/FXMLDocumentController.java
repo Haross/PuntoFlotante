@@ -42,6 +42,37 @@ public class FXMLDocumentController implements Initializable {
     private void openWindowWithOption(String file) {
         Stage stage = new Stage();
         Parent root = null;
+        String[] extesion = new String[2];
+        extesion = file.split("\\.");
+        System.out.println("Extesion[0]: "+extesion[0]);
+        if (extesion[0].equals("/Biseccion/FXMLBiseccion")) {
+            stage.setTitle("Biseccion");
+            stage.setResizable(false);
+        }
+        if (extesion[0].equals("/FalsePosition/FXMLFalsePosition")) {
+            stage.setTitle("Falsa Posicion");
+            stage.setResizable(false);
+        }
+        if (extesion[0].equals("/OperacionesFlotantes/OperacionesFlotantes")) {
+            stage.setTitle("Operaciones Flotantes");
+            stage.setResizable(false);
+        }
+        if (extesion[0].equals("/NewtonR/Newton")) {
+            stage.setTitle("Newton Raphson");
+            stage.setResizable(false);
+        }
+        if (extesion[0].equals("/PuntoFijo/Static")) {
+            stage.setTitle("Punto Fijo");
+            stage.setResizable(false);
+        }
+        if (extesion[0].equals("/Secante/FXMLSecante")) {
+            stage.setTitle("Secante");
+            stage.setResizable(false);
+        }
+        if (extesion[0].equals("/BinaryMachine/FXMLBinary")) {
+            stage.setTitle("Maquina Binaria");
+            stage.setResizable(false);
+        }        
         try {
 
             root = FXMLLoader.load(getClass().getResource(file));
