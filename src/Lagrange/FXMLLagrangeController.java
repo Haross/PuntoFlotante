@@ -3,6 +3,7 @@ package Lagrange;
 import Interpretador.Interpretador;
 import com.jfoenix.controls.JFXCheckBox;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.net.URL;
@@ -27,9 +28,12 @@ public class FXMLLagrangeController implements Initializable {
     @FXML
     private Label lblx0, lbly0, lblx1, lbly1, lblx2, lbly2, lblx3, lbly3;
     @FXML
-    private TextField txtx0, txty0, txtx1, txty1, txtx2, txty2, txtx3, txty3;
+    private TextField txtx0, txty0, txtx1, txty1, txtx2,txtFuncion, txty2, txtx3, txty3;
     @FXML
     private TextArea txtArea;
+    Interpretador interpretador = new Interpretador();
+    
+    
     @FXML
     private JFXCheckBox checkY;
     private BigDecimal x0, y0, x1, y1, x2, y2, x3, y3;
@@ -51,28 +55,55 @@ public class FXMLLagrangeController implements Initializable {
         }
         
     }
-
+    
+     public double getValor(String value){
+        Interpretador in = new Interpretador();
+        String aux = value.replace("-","!");
+         System.out.println("val"+aux);
+        in.setFuncion(aux);
+        double auxValor = in.getResultado();
+        System.out.println("val"+auxValor);
+        in.setFuncion(txtFuncion.getText());
+         aux = value.replace("-","!");
+        return in.getResultado(aux);
+    }
+    
+   
     public void getXY() {
+        System.out.println("getXY");
         int i = Integer.parseInt(numNodos.getValue().toString());
         for (int j = 1; j <= i; j++) {
             try {
                 switch (j) {
                     case 1:
                         x0 = new BigDecimal(txtx0.getText());
-                        y0 = new BigDecimal(txty0.getText());
+                        if(checkY.isSelected())
+                            y0 = new BigDecimal(txty0.getText());
+                        else
+                            y0 = new BigDecimal(getValor(txtx0.getText()));
+                        System.out.println("hol"+y0);
                         break;
                     case 2:
                         x1 = new BigDecimal(txtx1.getText());
-                        y1 = new BigDecimal(txty1.getText());
+                         if(checkY.isSelected())
+                            y1 = new BigDecimal(txty1.getText());
+                        else
+                            y1 = new BigDecimal(getValor(txtx1.getText()));
                         break;
                     case 3:
                         x2 = new BigDecimal(txtx2.getText());
-                        y2 = new BigDecimal(txty2.getText());
+                        if(checkY.isSelected())
+                            y2 = new BigDecimal(txty2.getText());
+                        else
+                            y2 = new BigDecimal(getValor(txtx2.getText()));
                         break;
                     case 4:
 
                         x3 = new BigDecimal(txtx3.getText());
-                        y3 = new BigDecimal(txty3.getText());
+                         if(checkY.isSelected())
+                            y3 = new BigDecimal(txty3.getText());
+                        else
+                            y3 = new BigDecimal(getValor(txtx3.getText()));
                         break;
                 }
             } catch (Exception e) {
@@ -88,6 +119,8 @@ public class FXMLLagrangeController implements Initializable {
          mc = new MathContext(k,  RoundingMode.HALF_EVEN);
                    
          }*/
+        System.out.println(a);
+        System.out.println(b+"hola");
         return a.divide(b, mc);
 
     }
@@ -231,13 +264,20 @@ public class FXMLLagrangeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setInvisible();
+      
+        setInvisibleX();
+                    setInvisibleY();
         inicializarCombo();
         inicializarCheckY();
     }
     public void inicializarCheckY(){
         checkY.setOnAction((e)->{
-            if(checkY.isSelected()){
+            check();
+        });
+        
+    }
+    private void check(){
+        if(checkY.isSelected()){
             switch(numNodos.getValue().toString()){
                  case "4":
                 lbly3.setVisible(true);
@@ -264,28 +304,44 @@ public class FXMLLagrangeController implements Initializable {
                      txty0.setVisible(true);
                 break;
             }}else{
-                setInvisible();
+                setInvisibleY();
             }
-        });
-        
     }
 
-    private void setInvisible() {
+    private void setInvisibleX() {
         lblx3.setVisible(false);
-        lbly3.setVisible(false);
+        
         txtx3.setVisible(false);
-        txty3.setVisible(false);
+        
         lblx2.setVisible(false);
-        lbly2.setVisible(false);
+        
         txtx2.setVisible(false);
-        txty2.setVisible(false);
+        
         lblx1.setVisible(false);
-        lbly1.setVisible(false);
+       
         txtx1.setVisible(false);
-        txty1.setVisible(false);
+       
         lblx0.setVisible(false);
-        lbly0.setVisible(false);
+        
         txtx0.setVisible(false);
+       
+    }
+    private void setInvisibleY(){
+       
+        lbly3.setVisible(false);
+        
+        txty3.setVisible(false);
+       
+        lbly2.setVisible(false);
+        
+        txty2.setVisible(false);
+        
+        lbly1.setVisible(false);
+        
+        txty1.setVisible(false);
+      
+        lbly0.setVisible(false);
+        
         txty0.setVisible(false);
     }
 
@@ -306,25 +362,27 @@ public class FXMLLagrangeController implements Initializable {
                     txtx1.setVisible(true);                  
                     lblx0.setVisible(true);              
                     txtx0.setVisible(true);     
-                   // setY();
+                   check();
                     break;
                 case "3":
-                    setInvisible();
+                    setInvisibleX();
+                    setInvisibleY();
                     lblx2.setVisible(true);                    
                     txtx2.setVisible(true);                 
                     lblx1.setVisible(true);                    
                     txtx1.setVisible(true);                    
                     lblx0.setVisible(true);                  
                     txtx0.setVisible(true);
-                   // setY();
+                   check();
                     break;
                 case "2":
-                    setInvisible();
+                    setInvisibleX();
+                    setInvisibleY();
                     lblx1.setVisible(true);                
                     txtx1.setVisible(true);                   
                     lblx0.setVisible(true);                   
                     txtx0.setVisible(true);
-                    //setY();
+                    check();
                     break;
             }
         });
