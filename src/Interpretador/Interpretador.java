@@ -165,13 +165,13 @@ public class Interpretador {
                 expresiones.add(num1+" / "+num2 +" = " + getValue(operacion) );
                 break;
             case "^":
-                double oper =Math.pow(num1.doubleValue(),num2.doubleValue()); 
+                double oper =getValue(Math.pow(num1.doubleValue(),num2.doubleValue())); 
                 //operacion = num1.pow(num2.intValue());
                 expresiones.add(num1+"^"+num2 +" = " + getValue(oper) );
                 return oper;
                       
         }
-       return operacion.doubleValue();
+       return getValue(operacion.doubleValue());
     }
 
     private double evaluar(String op, String n1) {
