@@ -28,7 +28,7 @@ public class FXMLLagrangeController implements Initializable {
     @FXML
     private Label lblx0, lbly0, lblx1, lbly1, lblx2, lbly2, lblx3, lbly3;
     @FXML
-    private TextField txtx0, txty0, txtx1, txty1, txtx2,txtFuncion, txty2, txtx3, txty3;
+    private TextField txtx0, txty0, txtx1, txty1, txtx2,txtFuncion,txtPolinomio, txty2, txtx3, txty3;
     @FXML
     private TextArea txtArea;
     Interpretador interpretador = new Interpretador();
@@ -138,16 +138,18 @@ public class FXMLLagrangeController implements Initializable {
         
         BigDecimal c1 = a.add(b);
         BigDecimal c2 =  a.multiply(x1).add(b.multiply(x0)).multiply(new BigDecimal(-1));
-        if (isNegative(c1)) {
+   
             txtArea.setText(txtArea.getText() + "\n\n" + c1 + "x  ");
-        } else {
-            txtArea.setText(txtArea.getText() + "\n\n" + c1 + "x  ");
-        }
+            txtPolinomio.setText(c1 + "x  ");
+        
         if (isNegative(c2)) {
             txtArea.setText(txtArea.getText() + c2 );
+            txtPolinomio.setText(txtPolinomio.getText()+c2);
         } else {
             txtArea.setText(txtArea.getText() +"+"+ c2 );
+             txtPolinomio.setText(txtPolinomio.getText()+"+"+c2);
         }
+        
         
     }
 
@@ -174,20 +176,22 @@ public class FXMLLagrangeController implements Initializable {
         BigDecimal c2 = a.multiply(x1.add(x2)).add(b.multiply(x0.add(x2))).add(c.multiply(x0.add(x1))).multiply(new BigDecimal(-1));
         BigDecimal c3 = a.multiply(x1).multiply(x2).add(b.multiply(x0).multiply(x2)).add(c.multiply(x0).multiply(x1));
 
-        if (isNegative(c1)) {
+    
             txtArea.setText(txtArea.getText() + "\n\n" + c1 + "x^2  ");
-        } else {
-            txtArea.setText(txtArea.getText() + "\n\n" + c1 + "x^2  ");
-        }
+        txtPolinomio.setText(c1 + "x^2  ");
         if (isNegative(c2)) {
             txtArea.setText(txtArea.getText() + c2 + "x ");
+             txtPolinomio.setText(txtPolinomio.getText()+c2+ "x ");
         } else {
             txtArea.setText(txtArea.getText() +"+"+ c2 + "x  ");
+            txtPolinomio.setText(txtPolinomio.getText()+"+"+c2+ "x ");
         }
         if (isNegative(c3)) {
+            txtPolinomio.setText(txtPolinomio.getText()+c3);
             txtArea.setText(txtArea.getText() + c3);
         } else {
             txtArea.setText(txtArea.getText() +"+"+ c3);
+            txtPolinomio.setText(txtPolinomio.getText()+"+"+c3);
         }
 
     }
@@ -236,25 +240,29 @@ public class FXMLLagrangeController implements Initializable {
         System.out.println(a.multiply(x1).multiply(x2));
         System.out.println(a.multiply(x1).multiply(x2).multiply(x3));
 
-        if (isNegative(c1)) {
+   
             txtArea.setText(txtArea.getText() + "\n\n" + c1 + "x^3  ");
-        } else {
-            txtArea.setText(txtArea.getText() + "\n\n" + c1 + "x^3   ");
-        }
+         txtPolinomio.setText(c1 + "x^3  ");
         if (isNegative(c2)) {
             txtArea.setText(txtArea.getText() + c2 + "x^2  ");
+            txtPolinomio.setText(txtPolinomio.getText()+c2+ "x^2 ");
         } else {
             txtArea.setText(txtArea.getText() + c2 +"+"+ "x^2  ");
+             txtPolinomio.setText(txtPolinomio.getText()+"+"+c2+ "x^2 ");
         }
         if (isNegative(c3)) {
             txtArea.setText(txtArea.getText() + c3 + "x  ");
+             txtPolinomio.setText(txtPolinomio.getText()+c3 + "x  ");
         } else {
             txtArea.setText(txtArea.getText() + c3 +"+"+ "x  ");
+            txtPolinomio.setText(txtPolinomio.getText()+"+"+c3 + "x  ");
         }
         if (isNegative(c4)) {
             txtArea.setText(txtArea.getText() + c4);
+            txtPolinomio.setText(txtPolinomio.getText()+c4);
         } else {
             txtArea.setText(txtArea.getText() +"+"+ c4);
+            txtPolinomio.setText(txtPolinomio.getText()+"+"+c3);
         }
 
     }
