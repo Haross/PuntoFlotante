@@ -1,6 +1,7 @@
 package Lagrange;
 
 import Interpretador.Interpretador;
+import com.jfoenix.controls.JFXCheckBox;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -29,7 +30,8 @@ public class FXMLLagrangeController implements Initializable {
     private TextField txtx0, txty0, txtx1, txty1, txtx2, txty2, txtx3, txty3;
     @FXML
     private TextArea txtArea;
-
+    @FXML
+    private JFXCheckBox checkY;
     private BigDecimal x0, y0, x1, y1, x2, y2, x3, y3;
     private String num = "";
 
@@ -231,6 +233,41 @@ public class FXMLLagrangeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setInvisible();
         inicializarCombo();
+        inicializarCheckY();
+    }
+    public void inicializarCheckY(){
+        checkY.setOnAction((e)->{
+            if(checkY.isSelected()){
+            switch(numNodos.getValue().toString()){
+                 case "4":
+                lbly3.setVisible(true);
+                txty3.setVisible(true);
+                lbly2.setVisible(true);
+                txty2.setVisible(true);
+                lbly1.setVisible(true);
+                txty1.setVisible(true);
+                  lbly0.setVisible(true);
+                  txty0.setVisible(true);
+                break;
+            case "3":
+                lbly2.setVisible(true);
+                   txty2.setVisible(true);
+                   lbly1.setVisible(true);
+                   txty1.setVisible(true);
+                    lbly0.setVisible(true);
+                    txty0.setVisible(true);
+                break;
+            case "2":
+                  lbly1.setVisible(true);
+                   txty1.setVisible(true);
+                    lbly0.setVisible(true);
+                     txty0.setVisible(true);
+                break;
+            }}else{
+                setInvisible();
+            }
+        });
+        
     }
 
     private void setInvisible() {
@@ -252,54 +289,42 @@ public class FXMLLagrangeController implements Initializable {
         txty0.setVisible(false);
     }
 
+
+    
+
     private void inicializarCombo() {
 
         numNodos.setOnAction((e) -> {
             num = numNodos.getValue().toString();
             switch (num) {
                 case "4":
-                    lblx3.setVisible(true);
-                    lbly3.setVisible(true);
-                    txtx3.setVisible(true);
-                    txty3.setVisible(true);
-                    lblx2.setVisible(true);
-                    lbly2.setVisible(true);
-                    txtx2.setVisible(true);
-                    txty2.setVisible(true);
-                    lblx1.setVisible(true);
-                    lbly1.setVisible(true);
-                    txtx1.setVisible(true);
-                    txty1.setVisible(true);
-                    lblx0.setVisible(true);
-                    lbly0.setVisible(true);
-                    txtx0.setVisible(true);
-                    txty0.setVisible(true);
+                    lblx3.setVisible(true);                   
+                    txtx3.setVisible(true);                   
+                    lblx2.setVisible(true);                   
+                    txtx2.setVisible(true);                   
+                    lblx1.setVisible(true);                   
+                    txtx1.setVisible(true);                  
+                    lblx0.setVisible(true);              
+                    txtx0.setVisible(true);     
+                   // setY();
                     break;
                 case "3":
                     setInvisible();
-                    lblx2.setVisible(true);
-                    lbly2.setVisible(true);
-                    txtx2.setVisible(true);
-                    txty2.setVisible(true);
-                    lblx1.setVisible(true);
-                    lbly1.setVisible(true);
-                    txtx1.setVisible(true);
-                    txty1.setVisible(true);
-                    lblx0.setVisible(true);
-                    lbly0.setVisible(true);
+                    lblx2.setVisible(true);                    
+                    txtx2.setVisible(true);                 
+                    lblx1.setVisible(true);                    
+                    txtx1.setVisible(true);                    
+                    lblx0.setVisible(true);                  
                     txtx0.setVisible(true);
-                    txty0.setVisible(true);
+                   // setY();
                     break;
                 case "2":
                     setInvisible();
-                    lblx1.setVisible(true);
-                    lbly1.setVisible(true);
-                    txtx1.setVisible(true);
-                    txty1.setVisible(true);
-                    lblx0.setVisible(true);
-                    lbly0.setVisible(true);
+                    lblx1.setVisible(true);                
+                    txtx1.setVisible(true);                   
+                    lblx0.setVisible(true);                   
                     txtx0.setVisible(true);
-                    txty0.setVisible(true);
+                    //setY();
                     break;
             }
         });
