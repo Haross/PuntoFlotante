@@ -91,7 +91,11 @@ public class FXMLBiseccionController implements Initializable {
         int i = 1;
         double FA = f(a);
         while(i <= n){
-            p = interpretador.getValue(interpretador.getValue(a)+interpretador.getValue((interpretador.getValue(b)-interpretador.getValue(a))/2));
+            Interpretador in = new Interpretador();
+            in.setFuncion(a+(b-a)/2+"");
+            p = in.getResultado();
+                    
+           // p = interpretador.getValue(interpretador.getValue(a)+interpretador.getValue((interpretador.getValue(b)-interpretador.getValue(a))/2));
             double FP = f(p);
             
             txtArea.setText(txtArea.getText()+"Iteracion " + i
