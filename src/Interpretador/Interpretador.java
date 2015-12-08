@@ -67,6 +67,17 @@ public class Interpretador {
         funcionAux = this.funcion;
     }
 
+ 
+    /**
+     *
+     * @param x valor que será sustituido en todas las incognitas
+     * @return retorna el resultado evaluado de la función con incognita.
+     */
+    public double getResultado(String x) {
+        //Se reemplaza el valor de x, así como también valores de PI y e que existan en la expresión.
+        funcionAux = funcion.replaceAll("x",x); 
+        return getResultado();
+    }
     /**
      *
      * @param x valor que será sustituido en todas las incognitas

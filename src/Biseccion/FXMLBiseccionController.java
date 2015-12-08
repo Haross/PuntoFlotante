@@ -44,7 +44,11 @@ public class FXMLBiseccionController implements Initializable {
      * @return retorna el resultado de la funcion
      */
     private double f(double x) {
-       return interpretador.getResultado(x);
+        if(x<0){
+            double x1 = x*-1;
+            return interpretador.getResultado("!"+x1);
+        }
+       return interpretador.getResultado(x+"");
     }
     
     /**
@@ -92,11 +96,27 @@ public class FXMLBiseccionController implements Initializable {
         double FA = f(a);
         while(i <= n){
             Interpretador in = new Interpretador();
-            /*if(a<0){
-                in.setFuncion("!"+a+(b+"!"+a)/2+"");
-            }*/
-            System.out.println("holas"+a+(b-a)/2+"");
-            in.setFuncion(a+(b-a)/2+"");
+            if(a<0 && b<0){
+                double a1 = a*-1;
+                double b1 = b *-1;
+                //Esto es igual a -a+(a+!b)/2 
+                in.setFuncion("!"+a1+"+("+a1+"+!"+b1+")/"+2);
+            }else{
+                if(a<0){
+                     double a1 = a*-1;
+                    in.setFuncion("!"+a1+"+("+b+"+"+a1+")/"+2);
+                }else{
+                    if(b<0){
+                      double b1 = b *-1;
+                       in.setFuncion(a+"+("+a+"+!"+b1+")/"+2); 
+                    }else{
+                         in.setFuncion(a+"+("+b+"-"+a+")/"+2);
+                    }
+                }
+            }
+                    
+              
+       
             p = in.getResultado();
                     
            // p = interpretador.getValue(interpretador.getValue(a)+interpretador.getValue((interpretador.getValue(b)-interpretador.getValue(a))/2));
