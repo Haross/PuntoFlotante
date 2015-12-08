@@ -80,6 +80,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML private void Binario(){
        openWindowWithOption("/BinaryMachine/FXMLBinary.fxml");
     }
+    @FXML private void Lagrange(){
+       openWindowWithOption("/Lagrange/FXMLLagrange.fxml");
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
