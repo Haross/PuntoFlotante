@@ -183,12 +183,13 @@ public class NewtonController implements Initializable {
             
             P = in.getResultado();
             System.out.println(P);
+             txtArea.setText(txtArea.getText()+"\n\tIteracion " + i
+            + "\n\t" + "P= " +P+"\n\t" + "P0= " + P0);
             if (Math.abs(P - P0) < tol) {
                 txtRaiz.setText(P+"");
                  return;
             }
-            txtArea.setText(txtArea.getText()+"\n\tIteracion " + i
-            + "\n\t" + "P= " +P+"\n\t" + "P0= " + P0);
+           
             i = i +1;
             P0 = P;
         }
