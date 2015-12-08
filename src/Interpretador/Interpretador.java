@@ -171,7 +171,7 @@ public class Interpretador {
                 return oper;
                       
         }
-       return getValue(operacion.doubleValue());
+       return operacion.doubleValue();
     }
 
     private double evaluar(String op, String n1) {
