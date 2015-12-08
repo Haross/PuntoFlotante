@@ -31,6 +31,7 @@ public class FXMLSecanteController {
     @FXML
     private TextArea txtArea; //Variables de tipo TextArea
     
+     Interpretador in = new Interpretador();
     Interpretador interpretador = new Interpretador();//Instancia de nuestro interprete 
     private final String PI = "3.141592653589793";// vaor de PI para usarlo en ciertos calculos necesarios 
     
@@ -49,25 +50,49 @@ public class FXMLSecanteController {
      * en caso contrario nos manda un alerta y si esta bien escrita llama nuestro interprete y convierte esa ecuacion 
      * de tipo String a una ecuacion logica para la computadora 
      */
-    
+     /**
+     * Metodo para obtener la K
+    */
+    private void getK(){
+        if(!"".equals(txtK.getText())){
+            interpretador.setK(Integer.parseInt(txtK.getText()));
+            in.setK(Integer.parseInt(txtK.getText()));
+        }
+    }
+    /**
+     * Metodo que seleccion el tipo operacion que se efecturara
+    */
+    public void setType(){
+        if(rbtnTruncamiento.isSelected()){
+                interpretador.setTipoValores(1);
+                in.setTipoValores(1);
+        }else{
+                interpretador.setTipoValores(2);
+                in.setTipoValores(2);
+        }
+       getK();
+    }
     
     /**
      * Este metodo nos toma el valor de P0 y con ayuda del interprete lo hace un valor logico para la computadora 
      * @return el valor de P0 
      */
-     private double getValueP0(){
-        Interpretador inter = new Interpretador();
-        inter.setFuncion(txtP0.getText());
-        return inter.getResultado();
+     public double getValueP0(){
+        Interpretador in = new Interpretador();
+        String aux = txtP0.getText().replace("-","!");
+        in.setFuncion(aux);
+        return in.getResultado();
     }
+    
     /**
      * Este metodo nos toma el valor de P1 y con ayuda del interprete lo hace un valor logico para la computadora 
      * @return el valor de P1 
      */
     private double getValueP1(){
-        Interpretador inter = new Interpretador();
-        inter.setFuncion(txtP1.getText());
-        return inter.getResultado();
+        Interpretador in = new Interpretador();
+        String aux = txtP1.getText().replace("-","!");
+        in.setFuncion(aux);
+        return in.getResultado();
     }
 
     /**
@@ -96,6 +121,7 @@ public class FXMLSecanteController {
     
     @FXML
     private void calculoRaiz() {
+        setType();
         txtArea.setText("");
         double p0 = getValueP0();
         double p1 = getValueP1();
@@ -107,7 +133,43 @@ public class FXMLSecanteController {
         double q1 = f(p1);
         System.out.println("vacia. "+ q0);
         while (i <= N) {
-            double p = p1 - q1 * (p1 - p0) / (q1 - q0);
+            
+            String ecuacion =  "p1 - q1 * (p1 - p0) / (q1 - q0)";
+            if(p1<0){
+                String aux = p1+"";
+                aux = aux.replace("-", "!");              
+                ecuacion = ecuacion.replace("p1",aux );
+            }else{
+                 ecuacion = ecuacion.replace("p1",p1+"" );
+            }
+            
+            if(p0<0){
+                String aux = p0+"";
+                aux = aux.replace("-", "!");              
+                ecuacion = ecuacion.replace("p0",aux );
+            }else{
+                 ecuacion = ecuacion.replace("p0",p0+"" );
+            }
+            
+            if(q1<0){
+                String aux = q1+"";
+                aux = aux.replace("-", "!");              
+                ecuacion = ecuacion.replace("q1",aux );
+            }else{
+                 ecuacion = ecuacion.replace("q1",q1+"" );
+            }
+            if(q0<0){
+                String aux = q0+"";
+                aux = aux.replace("-", "!");              
+                ecuacion = ecuacion.replace("q0",aux );
+            }else{
+                 ecuacion = ecuacion.replace("q0",q0+"" );
+            }
+            in.setFuncion(ecuacion);
+            double p = in.getResultado();
+            
+            
+          //  double p = p1 - q1 * (p1 - p0) / (q1 - q0);
             int aux = i-1;
             
             txtArea.setText(txtArea.getText()+"Iteracion " + aux
@@ -135,7 +197,13 @@ public class FXMLSecanteController {
      * 
      */
    private double f(double x) {
-        return interpretador.getResultado(x);
+         if(x<0){
+            double x1 = x*-1;
+            return interpretador.getResultado("!"+x1);
+        }
+       return interpretador.getResultado(x);
+       
+       
     }
 
     /**
