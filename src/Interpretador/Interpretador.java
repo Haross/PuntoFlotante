@@ -20,7 +20,7 @@ public class Interpretador {
     String funcionAux = "";
     ArrayList expresiones = new ArrayList();
     int tipo = 3;
-    int k = 5;
+    int k = 10;
 
     /**
      * Constructor que inicializa las variables de función 
