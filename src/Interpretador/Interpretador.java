@@ -15,7 +15,7 @@ public class Interpretador {
     
     private final String PI = "3.141592653589793";
     private final String e = "2.71828182846";
-
+    private final String E = "*10^";
     String funcion;
     String funcionAux = "";
     ArrayList expresiones = new ArrayList();
@@ -62,6 +62,8 @@ public class Interpretador {
      * @param funcion establece la función a evaluar.
      */
     public void setFuncion(String funcion) {
+        funcion = funcion.replace("E", E);
+        funcion = funcion.replace("^-","^!");
         ToPostfix a = new ToPostfix(funcion);
         this.funcion = a.getPostfix();
         funcionAux = this.funcion;
@@ -105,7 +107,9 @@ public class Interpretador {
     public double getResultado(){
         setConstantes();
         double resultado = 0;
-
+        
+        
+        
         String[] operaciones = funcionAux.split(" ");
 
         Stack< String> EntradaO = new Stack< String>(); //Entrada de datos
@@ -121,7 +125,7 @@ public class Interpretador {
         System.out.println(EntradaO);
         while (!EntradaO.isEmpty()) {
             if(EntradaO.peek().contains("!")){
-                System.out.println("holisdsns");
+    
                 Operandos.push("-"+EntradaO.pop().replace("!",""));
             }else{
             if (operadores.contains("" + EntradaO.peek())) {
@@ -177,7 +181,7 @@ public class Interpretador {
                 break;
             case "^":
                 double oper = getValue(Math.pow(num1.doubleValue(),num2.doubleValue())); 
-                System.out.println("valor"+oper);
+   
                 //operacion = num1.pow(num2.intValue());
                 expresiones.add(num1+"^"+num2 +" = " + getValue(oper) );
                 return oper;

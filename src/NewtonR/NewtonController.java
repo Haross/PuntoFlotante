@@ -30,6 +30,9 @@ public class NewtonController implements Initializable {
     private RadioButton rbtnTruncamiento, rbtnRedondeo;
     Interpretador interpretador;
     Interpretador interpretadorD;
+    
+     Interpretador in = new Interpretador();
+            
     /**
      * Metoto para limpiar los rectangulos blancos
      * @param e Evento cuando se presiona el boton 
@@ -79,6 +82,7 @@ public class NewtonController implements Initializable {
     private void getK(){
         if(txtK.getText() != ""){
             interpretador.setK(Integer.parseInt(txtK.getText()));
+            in.setK(Integer.parseInt(txtK.getText()));
         }
     }
     /**
@@ -87,8 +91,10 @@ public class NewtonController implements Initializable {
     public void setType(){
         if(rbtnTruncamiento.isSelected()){
                 interpretador.setTipoValores(1);
+                in.setTipoValores(1);
         }else{
                 interpretador.setTipoValores(2);
+                in.setTipoValores(2);
         }
        getK();
     }
@@ -107,6 +113,21 @@ public class NewtonController implements Initializable {
             }
     }
     
+    public double getP0(){
+        Interpretador in = new Interpretador();
+        String aux = txtP0.getText().replace("-","!");
+        in.setFuncion(aux);
+        return in.getResultado();
+    }
+    
+    
+    public String getEcuacion(String a,String reemplazo, double valor){
+        if(valor<0)
+            return a.replace(reemplazo, "!"+valor);
+        return a.replace(reemplazo,""+valor);
+    }
+    
+    
     /**
      *Metodo que calcula raiz mediante Newton Raphson
      */
@@ -119,10 +140,49 @@ public class NewtonController implements Initializable {
         double tol = Double.parseDouble(txtTol.getText());
         int n = Integer.parseInt(txtN.getText());
         int i = 1;
-        double P0 = Double.parseDouble(txtP0.getText());
+        double P0 = getP0();
         double P;
-        while (i < n) {            
-            P = P0 - (f(P0)/fd(P0));
+        while (i < n) {  
+           
+            String ecuacion = "P0 -(f(P0)/fd(P0))";
+            
+            System.out.println("test11"+f(P0));
+            System.out.println("test12"+fd(P0));
+            
+            if(f(P0)<0){
+                double aux = f(P0);
+                String aux2 = aux +"";
+                aux2 = aux2.replace("-","!");
+           
+                ecuacion = ecuacion.replace("f(P0)", aux2);
+            }else{
+                double aux = f(P0);
+        
+                ecuacion = ecuacion.replace("f(P0)", ""+aux);
+            }
+            if(fd(P0)<0){
+                double aux = fd(P0);
+                String aux2 = aux +"";
+                aux2 = aux2.replace("-","!");
+
+                ecuacion = ecuacion.replace("fd(P0)", aux2);
+            }else{
+                double aux = fd(P0);
+  
+                ecuacion = ecuacion.replace("fd(P0)", ""+aux);
+            }
+            if(P0<0){
+                String a = P0+"";
+                a = a.replace("-","!");
+                ecuacion = ecuacion.replace("P0",a);
+            }else{
+                ecuacion = ecuacion.replace("P0",P0+"");
+            }
+            System.out.println(ecuacion+"hola");
+            in.setFuncion(ecuacion);
+            
+            P = in.getResultado();
+            System.out.println(P);
             if (Math.abs(P - P0) < tol) {
                 txtRaiz.setText(P+"");
                  return;
