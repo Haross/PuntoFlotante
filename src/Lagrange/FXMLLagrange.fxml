@@ -38,7 +38,7 @@
       <TextArea fx:id="txtArea" editable="false" layoutX="12.0" layoutY="178.0" prefHeight="281.0" prefWidth="514.0" />
       <AnchorPane fx:id="anchorPane" layoutX="14.0" layoutY="172.0" prefHeight="287.0" prefWidth="514.0" visible="false" />
       <Label fx:id="lblArea" layoutX="78.0" layoutY="204.0" />
-      <ChoiceBox fx:id="numNodos" layoutX="134.0" layoutY="77.0" prefHeight="25.0" prefWidth="65.0">
+      <ComboBox fx:id="numNodos" layoutX="134.0" layoutY="77.0" prefHeight="25.0" prefWidth="65.0">
       <items>
                           <FXCollections fx:factory="observableArrayList">
                                <String fx:value="2" />
@@ -46,7 +46,7 @@
                                <String fx:value="4" />
                           </FXCollections>
                       </items>
-      </ChoiceBox>
+      </ComboBox>
       <TextField layoutX="41.0" layoutY="122.0" prefHeight="25.0" prefWidth="36.0" fx:id="txtx0" />
       <TextField fx:id="txty0" layoutX="105.0" layoutY="122.0" prefHeight="25.0" prefWidth="36.0" />
       <Label fx:id="lblx0" layoutX="23.0" layoutY="126.0" text="x0:" />
