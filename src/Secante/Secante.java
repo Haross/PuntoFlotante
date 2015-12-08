@@ -77,7 +77,11 @@ public class Secante {
         return p;
     }
      
-    
+    /**
+     * este metodo nos evalua el valor de P en la funcion 
+     * @param p nos recibe el valor de P
+     * @return y nos retorna el valor de P 
+     */
     private double funcion(double p){
         return p;
     }

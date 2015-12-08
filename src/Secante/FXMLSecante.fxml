@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="506.0" prefWidth="538.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Secante.FXMLSecanteController">
+<AnchorPane id="AnchorPane" prefHeight="506.0" prefWidth="538.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Secante.FXMLSecanteController">
     <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="506.0" stroke="WHITE" strokeType="INSIDE" width="538.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="181.0" layoutX="12.0" layoutY="14.0" stroke="#dadada" strokeType="INSIDE" width="514.0" />
@@ -60,7 +60,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
          <toggleGroup>
-            <ToggleGroup />
+            <ToggleGroup fx:id="opc" />
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="rbtnRedondeo" layoutX="418.0" layoutY="164.0" mnemonicParsing="false" text="Redondeo" toggleGroup="$opc">
@@ -74,6 +74,6 @@
          </font>
       </Label>
       <TextField fx:id="txtK" layoutX="74.0" layoutY="160.0" prefHeight="25.0" prefWidth="181.0" />
-      <Button layoutX="234.0" layoutY="466.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="25.0" prefWidth="73.0" text="Borrar" />
+      <Button layoutX="235.0" layoutY="467.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="25.0" prefWidth="73.0" text="Borrar" />
    </children>
 </AnchorPane>

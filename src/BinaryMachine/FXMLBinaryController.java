@@ -67,7 +67,7 @@ public class FXMLBinaryController implements Initializable {
     /**
      * Metodo principal en el que se realizan los calculos
      *
-     * @param e Evento que se utiliza para realizar el calculo
+     * @param e Evento que se utiliza para realizar el calculo de binario a flotante
      */
     @FXML
     public void principal(ActionEvent e) {
