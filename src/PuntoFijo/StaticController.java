@@ -33,6 +33,7 @@ public class StaticController implements Initializable {
     public TextArea txtArea;
     @FXML
     Interpretador interpretador;
+    @FXML
      private RadioButton rbtnTruncamiento, rbtnRedondeo;
      
      /**
@@ -69,7 +70,12 @@ public class StaticController implements Initializable {
         }
        return interpretador.getResultado(x+"");
     }
-     
+      public double getP0(){
+        Interpretador in = new Interpretador();
+        String aux = txtP.getText().replace("-","!");
+        in.setFuncion(aux);
+        return in.getResultado();
+    }
      /**
      * Metodo que  realiza los calculos del algoritmo
      * Evalua el valor ingreado de P(0) en la función 
@@ -78,16 +84,18 @@ public class StaticController implements Initializable {
   
     @FXML
     private void CalcularValores() {
+        setType();
         txtArea.setText("");//limpiamos el textArea
        
         int iteraciones = Integer.parseInt(txtN.getText());//se obtinen las iteraciones
-        double P0 = Double.parseDouble(txtP.getText());//se obtiene P0
+        double P0 = getP0();
         double Tolerancia = Double.parseDouble(txtTol.getText());//se obtiene la tolerancia
         
         int contador = 1; //incializamos el contador en 1
         
         double p;
         do {
+            
             p =  f(P0);//P obtine se valor de P0 evaluado en la funcion
             txtArea.setText(txtArea.getText()+"Iteracion " + contador//imprimimos los resultados en el textArea
                     + "\n\t" + "\n\tF(p)= " + f(P0)+"\n\n");
@@ -103,6 +111,7 @@ public class StaticController implements Initializable {
             } else {
                 
                 contador++;
+                
                 P0 = p;// se sustituye el valor de P con el obtenido de previamete en P
                 
             
