@@ -11,7 +11,7 @@ public class ToPostfix {
     String funcion;
 
     /**
-     *
+     * Llama al método depurar para agregar espacios entre operadores
      * @param funcion
      */
     public ToPostfix(String funcion) {
@@ -20,7 +20,7 @@ public class ToPostfix {
 
     /**
      *
-     * @return
+     * @return retorna la funcion pos fija
      */
     public String getPostfix() {
         String[] arrayInfix = funcion.split(" ");
@@ -75,8 +75,11 @@ public class ToPostfix {
         }
         return "";
     }
-
-    //Jerarquia de los operadores
+    
+    /** 
+     *  Metodo que sirve como apoyo para pasar la expresion
+     *  a notacion posfija
+     * */
     private int getJerarquia(String op) {
         int jerarquia = 99;
         if (op.equals("ln")) {

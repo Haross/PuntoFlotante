@@ -92,7 +92,8 @@ public class Interpretador {
     }
     
     /**
-     *
+     * Asigna las variables “PI y e” 
+     * con sus valores numéricos correspondientes.
      */
     public void setConstantes(){
         expresiones = new ArrayList();
@@ -101,8 +102,8 @@ public class Interpretador {
     }
     
     /**
-     *
-     * @return
+     * Metodo que evalua la funcion 
+     * @return retorna el resultado del resultado de la funcion
      */
     public double getResultado(){
         setConstantes();
@@ -143,13 +144,20 @@ public class Interpretador {
     }
 
     /**
-     *
-     * @return
+     * Guarda los resultado finales de cada operacion
+     * @return retorna un arraylist con los resultados
      */
     public ArrayList getOperaciones(){
         return expresiones;
     }
     
+    /**
+     * Metodo que evalua operaciones aritmeticas
+     * @param op se refiere a los operandos (+,-,*,/,^)
+     * @param n2 se refiere al operador
+     * @param n1 se refiere al operador
+     * @return retorna el resultado de la operacion
+     */
     private double evaluar(String op, String n2, String n1) {
         BigDecimal num1 = new BigDecimal(n1);
         BigDecimal num2 = new BigDecimal(n2);
@@ -189,7 +197,14 @@ public class Interpretador {
         }
        return operacion.doubleValue();
     }
-
+    
+    /**
+     * Metodo que evalua operaciones trigonometricas
+     * @param op se refiere a las funciones:
+     *  sin,cos,log,ln,tan, csc, cot, sec
+     * @param n1 operador a evaluar
+     * @return retorna el resultado de la operacion
+     */
     private double evaluar(String op, String n1) {
         double num1 = Double.parseDouble(n1);
         switch(op){
@@ -215,7 +230,7 @@ public class Interpretador {
     }
 
     /**
-     *
+     * 
      * @param funcion
      * @return regresa true si cumple con el formato del parentesis, false si no
      * lo cumple.
@@ -246,7 +261,7 @@ public class Interpretador {
     /**
      * Función para truncar o redondear un número dependiendo de la variable
      * truncamiento.
-     *
+     * Sirve para operaciones trigonometricas
      * @param numero, número que se quiere truncar
      *
      * @return double que representa el nuevo número truncado
@@ -276,7 +291,7 @@ public class Interpretador {
     /**
      * Función para truncar o redondear un número dependiendo de la variable
      * truncamiento.
-     *
+     * Sirve para operaciones aritmeticas
      * @param numero, número que se quiere truncar
      *
      * @return numero regresa un numero en BigDecimal.
