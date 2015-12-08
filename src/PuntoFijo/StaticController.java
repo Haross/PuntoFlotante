@@ -133,6 +133,7 @@ public class StaticController implements Initializable {
         txtN.setText("");
         txtArea.setText("");
         txtP.setText("");
+        txtRe.setText("");
     }
 
     @Override
