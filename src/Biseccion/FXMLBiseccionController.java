@@ -62,12 +62,25 @@ public class FXMLBiseccionController implements Initializable {
         txtK.setText("");
         txtArea.setText("");
     }
-
+    private void getK(){
+        if(txtK.getText() != ""){
+            interpretador.setK(Integer.parseInt(txtK.getText()));
+        }
+    }
+    public void setType(){
+        if(rbtnTruncamiento.isSelected()){
+                interpretador.setTipoValores(1);
+            }else{
+                interpretador.setTipoValores(2);
+            }
+            getK();
+    }
     /**
      * Metodo que obtiene los datos y realiza los calculos
      */
     @FXML
     public void calculoRaiz() {
+        setType();
          //Primero limpiamos el text area para eliminar lo que se calculo anteriormente.
             txtArea.setText("");
         double a = Double.parseDouble(txtA.getText());
@@ -78,7 +91,7 @@ public class FXMLBiseccionController implements Initializable {
         int i = 1;
         double FA = f(a);
         while(i <= n){
-            p = a+(b-a)/2;
+            p = interpretador.getValue(interpretador.getValue(a)+interpretador.getValue((interpretador.getValue(b)-interpretador.getValue(a))/2));
             double FP = f(p);
             
             txtArea.setText(txtArea.getText()+"Iteracion " + i
