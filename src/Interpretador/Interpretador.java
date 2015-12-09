@@ -64,6 +64,16 @@ public class Interpretador {
     public void setFuncion(String funcion) {
         funcion = funcion.replace("E", E);
         funcion = funcion.replace("^-","^!");
+        
+        funcion = funcion.replace("!sin","!1*sin");
+        funcion = funcion.replace("!cos","!1*cos");
+        funcion = funcion.replace("!tan","!1*tan");
+        funcion = funcion.replace("!cot","!1*cot");
+        funcion = funcion.replace("!csc","!1*csc");
+        funcion = funcion.replace("!sec","!1*sec");
+        funcion = funcion.replace("!ln","!1*ln");
+        funcion = funcion.replace("!log","!1*log");
+        
         ToPostfix a = new ToPostfix(funcion);
         this.funcion = a.getPostfix();
         funcionAux = this.funcion;
