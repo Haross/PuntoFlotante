@@ -3,14 +3,12 @@ package Lagrange;
 import Interpretador.Interpretador;
 import com.jfoenix.controls.JFXCheckBox;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -39,6 +37,9 @@ public class FXMLLagrangeController implements Initializable {
     private BigDecimal x0, y0, x1, y1, x2, y2, x3, y3;
     private String num = "";
 
+    /**
+     *  Este método determina que grado se desea calcular dependiendo de los nodos.
+     */
     @FXML
     public void calculo() {
         txtArea.setText("");
@@ -56,7 +57,12 @@ public class FXMLLagrangeController implements Initializable {
         
     }
     
-     public double getValor(String value){
+    /**
+     *
+     * @param value regresa el valor de y evaluada en la función dada
+     * @return
+     */
+    public double getValor(String value){
         Interpretador in = new Interpretador();
         String aux = value.replace("-","!");
          System.out.println("val"+aux);
@@ -67,8 +73,23 @@ public class FXMLLagrangeController implements Initializable {
          aux = value.replace("-","!");
         return in.getResultado(aux);
     }
+    /**
+     *
+     * @param value variable que recibe la expresión dada
+     * @return regresa el valor de y evaluada en la función dada
+     */
+    public double getValor2(String value){
+        Interpretador in = new Interpretador();
+        String aux = value.replace("-","!");
+         System.out.println("val"+aux);
+        in.setFuncion(aux);
+        return  in.getResultado();
+        
+    }
     
-   
+    /**
+     * Este método consigue los valores de los nodos X y Y que serán ocupados
+     */
     public void getXY() {
         System.out.println("getXY");
         int i = Integer.parseInt(numNodos.getValue().toString());
@@ -78,7 +99,7 @@ public class FXMLLagrangeController implements Initializable {
                     case 1:
                         x0 = new BigDecimal(txtx0.getText());
                         if(checkY.isSelected())
-                            y0 = new BigDecimal(txty0.getText());
+                            y0 = new BigDecimal(getValor2(txty0.getText()));
                         else
                             y0 = new BigDecimal(getValor(txtx0.getText()));
                         System.out.println("hol"+y0);
@@ -86,14 +107,14 @@ public class FXMLLagrangeController implements Initializable {
                     case 2:
                         x1 = new BigDecimal(txtx1.getText());
                          if(checkY.isSelected())
-                            y1 = new BigDecimal(txty1.getText());
+                            y1 = new BigDecimal(getValor2(txty1.getText()));
                         else
                             y1 = new BigDecimal(getValor(txtx1.getText()));
                         break;
                     case 3:
                         x2 = new BigDecimal(txtx2.getText());
                         if(checkY.isSelected())
-                            y2 = new BigDecimal(txty2.getText());
+                            y2 = new BigDecimal(getValor2(txty2.getText()));
                         else
                             y2 = new BigDecimal(getValor(txtx2.getText()));
                         break;
@@ -101,7 +122,7 @@ public class FXMLLagrangeController implements Initializable {
 
                         x3 = new BigDecimal(txtx3.getText());
                          if(checkY.isSelected())
-                            y3 = new BigDecimal(txty3.getText());
+                            y3 = new BigDecimal(getValor2(txty3.getText()));
                         else
                             y3 = new BigDecimal(getValor(txtx3.getText()));
                         break;
@@ -113,6 +134,12 @@ public class FXMLLagrangeController implements Initializable {
 
     }
 
+    /**
+     *
+     * @param a  el valor del divisor
+     * @param b el valor del dividiendo
+     * @return regresa el resultado de la division
+     */
     public BigDecimal getDivision(BigDecimal a, BigDecimal b) {
         MathContext mc = new MathContext(10, RoundingMode.DOWN);
         /*  if(tipo == 2){
@@ -125,6 +152,9 @@ public class FXMLLagrangeController implements Initializable {
 
     }
     
+    /**
+     * Consigue el polinomio de grado uno en base a las x0 y x1 que se ingresaron.
+     */
     public void getP1(){
         getXY();
         BigDecimal a = x0.subtract(x1);
@@ -153,6 +183,9 @@ public class FXMLLagrangeController implements Initializable {
         
     }
 
+    /**
+     * Consigue el polinomio de grado dos en base a las X que se ingresaron.
+     */
     public void getP2() {
         getXY();
         BigDecimal a = x0.subtract(x1).multiply(x0.subtract(x2));
@@ -195,11 +228,20 @@ public class FXMLLagrangeController implements Initializable {
         }
 
     }
+
+    /**
+     *
+     * @param b número a evaluar
+     * @return regresa un valor true si es negativo. false si es positivo.
+     */
     public static boolean isNegative(BigDecimal b)
     {
         return b.signum() == -1;
     }
 
+    /**
+     * Consigue el polinomio de grado tres en base a las X y Y que se ingresaron.
+     */
     public void getP3() {
 
         getXY();
@@ -269,6 +311,8 @@ public class FXMLLagrangeController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -278,6 +322,10 @@ public class FXMLLagrangeController implements Initializable {
         inicializarCombo();
         inicializarCheckY();
     }
+
+    /**
+     *
+     */
     public void inicializarCheckY(){
         checkY.setOnAction((e)->{
             check();
