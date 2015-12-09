@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="528.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PuntoFijo.StaticController">
+<AnchorPane id="AnchorPane" prefHeight="528.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PuntoFijo.StaticController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="528.0" stroke="WHITE" strokeType="INSIDE" width="593.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="178.0" layoutX="22.0" layoutY="24.0" stroke="#dadada" strokeType="INSIDE" width="539.0" />
       <TextField fx:id="txtFuncion" layoutX="96.0" layoutY="43.0" prefHeight="25.0" prefWidth="268.0" />
       <Label layoutX="54.0" layoutY="47.0" text="f (x) =">
