@@ -84,41 +84,48 @@ public class StaticController implements Initializable {
   
     @FXML
     private void CalcularValores() {
-        setType();
-        txtArea.setText("");//limpiamos el textArea
-       
-        int iteraciones = Integer.parseInt(txtN.getText());//se obtinen las iteraciones
-        double P0 = getP0();
-        double Tolerancia = Double.parseDouble(txtTol.getText());//se obtiene la tolerancia
-        
-        int contador = 1; //incializamos el contador en 1
-        
-        double p;
-        do {
-            
-            p =  f(P0);//P obtine se valor de P0 evaluado en la funcion
-            txtArea.setText(txtArea.getText()+"Iteracion " + contador//imprimimos los resultados en el textArea
-                    + "\n\t" + "\n\tF(p)= " + f(P0)+"\n\n");
-            
-            System.out.println("Iteracion: "+contador+"-------"+p+"------------");
-          
-            if (Math.abs(p - P0) <= Tolerancia) {//se evalua la condicion que determina el fin del Programa
-                txtRe.setText(p+"");
-                System.out.println("-------------final------------------");
-                System.out.println(p);
-                System.out.println("-------------------------------");
-                return;
-            } else {
-                
-                contador++;
-                
-                P0 = p;// se sustituye el valor de P con el obtenido de previamete en P
-                
-            
-            }
+        try{
+            setType();
+            txtArea.setText("");//limpiamos el textArea
 
-        } while (contador <= iteraciones);
+            int iteraciones = Integer.parseInt(txtN.getText());//se obtinen las iteraciones
+            double P0 = getP0();
+            double Tolerancia = Double.parseDouble(txtTol.getText());//se obtiene la tolerancia
 
+            int contador = 1; //incializamos el contador en 1
+
+            double p;
+            do {
+
+                p =  f(P0);//P obtine se valor de P0 evaluado en la funcion
+                txtArea.setText(txtArea.getText()+"Iteracion " + contador//imprimimos los resultados en el textArea
+                        + "\n\t" + "\n\tF(p)= " + f(P0)+"\n\n");
+
+                System.out.println("Iteracion: "+contador+"-------"+p+"------------");
+
+                if (Math.abs(p - P0) <= Tolerancia) {//se evalua la condicion que determina el fin del Programa
+                    txtRe.setText(p+"");
+                    System.out.println("-------------final------------------");
+                    System.out.println(p);
+                    System.out.println("-------------------------------");
+                    return;
+                } else {
+
+                    contador++;
+
+                    P0 = p;// se sustituye el valor de P con el obtenido de previamete en P
+
+
+                }
+
+            } while (contador <= iteraciones);
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Información");
+            alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
+
+            alert.showAndWait();
+       }
     }
     /**
      * Metodo que se encarga de limpiar los campos

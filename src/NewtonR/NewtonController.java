@@ -133,66 +133,73 @@ public class NewtonController implements Initializable {
      */
     @FXML
     public void calculoRaiz() {
-        setType();
-        setFuncion();
-         //Primero limpiamos el text area para eliminar lo que se calculo anteriormente.
-        txtArea.setText("");
-        double tol = Double.parseDouble(txtTol.getText());
-        int n = Integer.parseInt(txtN.getText());
-        int i = 1;
-        double P0 = getP0();
-        double P;
-        while (i < n) {  
-           
-            String ecuacion = "P0 -(f(P0)/fd(P0))";
-            
-            System.out.println("test11"+f(P0));
-            System.out.println("test12"+fd(P0));
-            
-            if(f(P0)<0){
-                double aux = f(P0);
-                String aux2 = aux +"";
-                aux2 = aux2.replace("-","!");
-           
-                ecuacion = ecuacion.replace("f(P0)", aux2);
-            }else{
-                double aux = f(P0);
-        
-                ecuacion = ecuacion.replace("f(P0)", ""+aux);
-            }
-            if(fd(P0)<0){
-                double aux = fd(P0);
-                String aux2 = aux +"";
-                aux2 = aux2.replace("-","!");
+        try{
+            setType();
+            setFuncion();
+             //Primero limpiamos el text area para eliminar lo que se calculo anteriormente.
+            txtArea.setText("");
+            double tol = Double.parseDouble(txtTol.getText());
+            int n = Integer.parseInt(txtN.getText());
+            int i = 1;
+            double P0 = getP0();
+            double P;
+            while (i < n) {  
 
-                ecuacion = ecuacion.replace("fd(P0)", aux2);
-            }else{
-                double aux = fd(P0);
-  
-                ecuacion = ecuacion.replace("fd(P0)", ""+aux);
+                String ecuacion = "P0 -(f(P0)/fd(P0))";
+
+                System.out.println("test11"+f(P0));
+                System.out.println("test12"+fd(P0));
+
+                if(f(P0)<0){
+                    double aux = f(P0);
+                    String aux2 = aux +"";
+                    aux2 = aux2.replace("-","!");
+
+                    ecuacion = ecuacion.replace("f(P0)", aux2);
+                }else{
+                    double aux = f(P0);
+
+                    ecuacion = ecuacion.replace("f(P0)", ""+aux);
+                }
+                if(fd(P0)<0){
+                    double aux = fd(P0);
+                    String aux2 = aux +"";
+                    aux2 = aux2.replace("-","!");
+
+                    ecuacion = ecuacion.replace("fd(P0)", aux2);
+                }else{
+                    double aux = fd(P0);
+
+                    ecuacion = ecuacion.replace("fd(P0)", ""+aux);
+                }
+                if(P0<0){
+                    String a = P0+"";
+                    a = a.replace("-","!");
+                    ecuacion = ecuacion.replace("P0",a);
+                }else{
+                    ecuacion = ecuacion.replace("P0",P0+"");
+                }
+                System.out.println(ecuacion+"hola");
+                in.setFuncion(ecuacion);
+
+                P = in.getResultado();
+                System.out.println(P);
+                 txtArea.setText(txtArea.getText()+"\n\tIteracion " + i
+                + "\n\t" + "P= " +P+"\n\t" + "P0= " + P0);
+                if (Math.abs(P - P0) < tol) {
+                    txtRaiz.setText(P+"");
+                     return;
+                }
+
+                i = i +1;
+                P0 = P;
             }
-            if(P0<0){
-                String a = P0+"";
-                a = a.replace("-","!");
-                ecuacion = ecuacion.replace("P0",a);
-            }else{
-                ecuacion = ecuacion.replace("P0",P0+"");
-            }
-            System.out.println(ecuacion+"hola");
-            in.setFuncion(ecuacion);
-            
-            P = in.getResultado();
-            System.out.println(P);
-             txtArea.setText(txtArea.getText()+"\n\tIteracion " + i
-            + "\n\t" + "P= " +P+"\n\t" + "P0= " + P0);
-            if (Math.abs(P - P0) < tol) {
-                txtRaiz.setText(P+"");
-                 return;
-            }
-           
-            i = i +1;
-            P0 = P;
-        }
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Información");
+            alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
+            alert.showAndWait();
+       }
     }
     /**
      * 

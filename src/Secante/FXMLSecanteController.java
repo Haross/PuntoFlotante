@@ -121,72 +121,81 @@ public class FXMLSecanteController {
     
     @FXML
     private void calculoRaiz() {
-        setType();
-        txtArea.setText("");
-        double p0 = getValueP0();
-        double p1 = getValueP1();
-        setFuncion();
-        double tol = Double.parseDouble(txtTol.getText());
-        int N = Integer.parseInt(txtN.getText());
-        int i = 2;
-        double q0 = f(p0);
-        double q1 = f(p1);
-        System.out.println("vacia. "+ q0);
-        while (i <= N) {
-            
-            String ecuacion =  "p1 - q1 * (p1 - p0) / (q1 - q0)";
-            if(p1<0){
-                String aux = p1+"";
-                aux = aux.replace("-", "!");              
-                ecuacion = ecuacion.replace("p1",aux );
-            }else{
-                 ecuacion = ecuacion.replace("p1",p1+"" );
+        try{
+            setType();
+            txtArea.setText("");
+            double p0 = getValueP0();
+            double p1 = getValueP1();
+            setFuncion();
+            double tol = Double.parseDouble(txtTol.getText());
+            int N = Integer.parseInt(txtN.getText());
+            int i = 2;
+            double q0 = f(p0);
+            double q1 = f(p1);
+            System.out.println("vacia. "+ q0);
+            while (i <= N) {
+
+                String ecuacion =  "p1 - q1 * (p1 - p0) / (q1 - q0)";
+                if(p1<0){
+                    String aux = p1+"";
+                    aux = aux.replace("-", "!");              
+                    ecuacion = ecuacion.replace("p1",aux );
+                }else{
+                     ecuacion = ecuacion.replace("p1",p1+"" );
+                }
+
+                if(p0<0){
+                    String aux = p0+"";
+                    aux = aux.replace("-", "!");              
+                    ecuacion = ecuacion.replace("p0",aux );
+                }else{
+                     ecuacion = ecuacion.replace("p0",p0+"" );
+                }
+
+                if(q1<0){
+                    String aux = q1+"";
+                    aux = aux.replace("-", "!");              
+                    ecuacion = ecuacion.replace("q1",aux );
+                }else{
+                     ecuacion = ecuacion.replace("q1",q1+"" );
+                }
+                if(q0<0){
+                    String aux = q0+"";
+                    aux = aux.replace("-", "!");              
+                    ecuacion = ecuacion.replace("q0",aux );
+                }else{
+                     ecuacion = ecuacion.replace("q0",q0+"" );
+                }
+                in.setFuncion(ecuacion);
+                double p = in.getResultado();
+
+
+              //  double p = p1 - q1 * (p1 - p0) / (q1 - q0);
+                int aux = i-1;
+
+                txtArea.setText(txtArea.getText()+"Iteracion " + aux
+                        + "\n\t" + "P= " + p+"\n\tF(p)= " + f(p)+"\n\n");
+
+                if (Math.abs(p - p1) < tol) {
+                    txtRaiz.setText(p + "");
+                    return;
+                }
+                i= i + 1;
+                double fp = f(p);
+
+                p0 = p1;
+                q0 = q1;
+                p1 = p;
+                q1 = fp;
             }
-            
-            if(p0<0){
-                String aux = p0+"";
-                aux = aux.replace("-", "!");              
-                ecuacion = ecuacion.replace("p0",aux );
-            }else{
-                 ecuacion = ecuacion.replace("p0",p0+"" );
-            }
-            
-            if(q1<0){
-                String aux = q1+"";
-                aux = aux.replace("-", "!");              
-                ecuacion = ecuacion.replace("q1",aux );
-            }else{
-                 ecuacion = ecuacion.replace("q1",q1+"" );
-            }
-            if(q0<0){
-                String aux = q0+"";
-                aux = aux.replace("-", "!");              
-                ecuacion = ecuacion.replace("q0",aux );
-            }else{
-                 ecuacion = ecuacion.replace("q0",q0+"" );
-            }
-            in.setFuncion(ecuacion);
-            double p = in.getResultado();
-            
-            
-          //  double p = p1 - q1 * (p1 - p0) / (q1 - q0);
-            int aux = i-1;
-            
-            txtArea.setText(txtArea.getText()+"Iteracion " + aux
-                    + "\n\t" + "P= " + p+"\n\tF(p)= " + f(p)+"\n\n");
-            
-            if (Math.abs(p - p1) < tol) {
-                txtRaiz.setText(p + "");
-                return;
-            }
-            i= i + 1;
-            double fp = f(p);
-            
-            p0 = p1;
-            q0 = q1;
-            p1 = p;
-            q1 = fp;
-        }
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Información");
+            alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
+
+            alert.showAndWait();
+        }        
+
     }
     /**
      *este metodo nos permite convertir la ecuacion desde un String hasta una ecuacion matematica 
