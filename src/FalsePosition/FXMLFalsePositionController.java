@@ -33,6 +33,7 @@ public class FXMLFalsePositionController implements Initializable {
     @FXML
     private TextArea txtArea;
     Interpretador interpretador = new Interpretador();
+    Interpretador in = new Interpretador();
     private final String PI = "3.141592653589793";
     
     @FXML private void Borrar(ActionEvent e){
@@ -45,16 +46,61 @@ public class FXMLFalsePositionController implements Initializable {
         txtK.setText("");
     }
     
+    
+    
+     /**
+     *este metodo nos permite corroborar que la funcion introducida por el usuario esta bien escrita 
+     * en caso contrario nos manda un alerta y si esta bien escrita llama nuestro interprete y convierte esa ecuacion 
+     * de tipo String a una ecuacion logica para la computadora 
+     */
+     /**
+     * Metodo para obtener la K
+    */
+    private void getK(){
+        if(!"".equals(txtK.getText())){
+            interpretador.setK(Integer.parseInt(txtK.getText()));
+            
+        }
+    }
+    
+    /**
+     * Metodo que seleccion el tipo operacion que se efecturara
+    */
+    public void setType(){
+        if(rbtnTruncamiento.isSelected()){
+                interpretador.setTipoValores(1);
+                in.setTipoValores(1);
+        }else{
+                interpretador.setTipoValores(2);
+                in.setTipoValores(2);
+        }
+       getK();
+    }
+    
+    /**
+     * Este metodo nos toma el valor de P0 y con ayuda del interprete lo hace un valor logico para la computadora 
+     * @return el valor de P0 
+     */
+     public double getValueP0(){
+        Interpretador in = new Interpretador();
+        String aux = txtP0.getText().replace("-","!");
+        in.setFuncion(aux);
+        return in.getResultado();
+    }
+    
+    /**
+     * Este metodo nos toma el valor de P1 y con ayuda del interprete lo hace un valor logico para la computadora 
+     * @return el valor de P1 
+     */
     private double getValueP1(){
-        Interpretador inter = new Interpretador();
-        inter.setFuncion(txtP1.getText());
-        return inter.getResultado();
+        Interpretador in = new Interpretador();
+        String aux = txtP1.getText().replace("-","!");
+        in.setFuncion(aux);
+        return in.getResultado();
     }
-    private double getValueP0(){
-        Interpretador inter = new Interpretador();
-        inter.setFuncion(txtP0.getText());
-        return inter.getResultado();
-    }
+    /*
+    * Este metodo establece la función con la cual funcionará el interprete
+    */
     private void setFuncion(){
         if (!interpretador.checarParentesis(txtFuncion.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -66,10 +112,15 @@ public class FXMLFalsePositionController implements Initializable {
                 interpretador.setFuncion(txtFuncion.getText());
             }
     }
-    
+    /*
+    * Este método calcula el valor de la raiz con el algoritmo de false position
+    */
     @FXML
     private void calculoRaiz() {
-       try{ txtArea.setText("");
+        
+       try{ 
+           setType();
+           txtArea.setText("");
         double p0 = getValueP0();
         double p1 = getValueP1();
         setFuncion();
@@ -79,7 +130,40 @@ public class FXMLFalsePositionController implements Initializable {
         double q0 = f(p0);
         double q1 = f(p1);
         while (i <= n) {
-            double p = p1 - q1 * (p1 - p0) / (q1 - q0);
+           String ecuacion =  "p1 - q1 * (p1 - p0) / (q1 - q0)";
+                if(p1<0){
+                    String aux = p1+"";
+                    aux = aux.replace("-", "!");              
+                    ecuacion = ecuacion.replace("p1",aux );
+                }else{
+                     ecuacion = ecuacion.replace("p1",p1+"" );
+                }
+
+                if(p0<0){
+                    String aux = p0+"";
+                    aux = aux.replace("-", "!");              
+                    ecuacion = ecuacion.replace("p0",aux );
+                }else{
+                     ecuacion = ecuacion.replace("p0",p0+"" );
+                }
+
+                if(q1<0){
+                    String aux = q1+"";
+                    aux = aux.replace("-", "!");              
+                    ecuacion = ecuacion.replace("q1",aux );
+                }else{
+                     ecuacion = ecuacion.replace("q1",q1+"" );
+                }
+                if(q0<0){
+                    String aux = q0+"";
+                    aux = aux.replace("-", "!");              
+                    ecuacion = ecuacion.replace("q0",aux );
+                }else{
+                     ecuacion = ecuacion.replace("q0",q0+"" );
+                }
+                in.setFuncion(ecuacion);
+                double p = in.getResultado();
+
             int aux = i-1;
             
             txtArea.setText(txtArea.getText()+"Iteracion " + aux
