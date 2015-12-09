@@ -21,7 +21,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -34,7 +33,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML 
     private Button btnCerrar;
     @FXML
-    private Rectangle LineBar, root;
+    private Rectangle LineBar, root, Title;
+    @FXML
+    private Button btnBinario, btnSecante,btnPuntoFijo,btnFalsaPosicion,btnNewton,btnOperaciones,btnBiseccion,btnLagrange;
     @FXML
     private MaterialDesignIconView close;
     private double xOffset = 0;
@@ -124,10 +125,14 @@ public class FXMLDocumentController implements Initializable {
         btnCerrar.setOnMouseEntered((e)->{
          close.setStyle("-fx-fill:RED;");
          LineBar.setStyle("-fx-fill:RED;");
+         Title.setStyle("-fx-fill:RED;-fx-opacity:0.5;");
+
         });
          btnCerrar.setOnMouseExited((e)->{
          close.setStyle("-fx-fill:WHITE;");
          LineBar.setStyle("-fx-fill:#4bc55d;");
+         Title.setStyle("-fx-fill:BLACK;");
+        Title.setStyle("-fx-opacity:0.75;");
         });
          setDragWindow();
       
@@ -142,6 +147,7 @@ public class FXMLDocumentController implements Initializable {
             public void handle(MouseEvent event) {
                 xOffset = btnCerrar.getScene().getWindow().getX() - event.getScreenX();
                 yOffset = btnCerrar.getScene().getWindow().getY() - event.getScreenY();
+               
             }
         });
       root.setOnMouseDragged(new EventHandler<MouseEvent>() {

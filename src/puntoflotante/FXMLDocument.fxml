@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="571.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PuntoFlotante.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="571.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PuntoFlotante.FXMLDocumentController">
     <children>
       <Rectangle fx:id="LineBar" fill="#4bc55d" height="15.0" layoutY="20.0" stroke="TRANSPARENT" strokeType="INSIDE" width="800.0" />
       <Text layoutX="86.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido">
@@ -30,10 +30,16 @@
             <MaterialDesignIconView fx:id="close" glyphName="CLOSE" size="25.0" style="-fx-fill: white;" />
          </graphic>
       </Button>
-      <Button fx:id="btnBiseccion1" layoutX="693.0" layoutY="463.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#Lagrange" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: black; -fx-background-radius: 0px;" text="Lagrange" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="700.0" />
+      <Button fx:id="btnLagrange" layoutX="693.0" layoutY="463.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#Lagrange" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: black; -fx-background-radius: 0px;" text="Lagrange" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="700.0" />
       <ImageView fitHeight="436.0" fitWidth="800.0" layoutY="35.0" pickOnBounds="true">
          <image>
-            <Image url="@Sin-título-1.png" />
+            <Image url="@Sin-título-1_1.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="Title" arcHeight="5.0" arcWidth="5.0" fill="#030303c0" height="305.0" layoutX="202.0" layoutY="116.0" stroke="TRANSPARENT" strokeType="INSIDE" width="423.0" />
+      <ImageView fitHeight="270.0" fitWidth="344.0" layoutX="230.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@nombres.png" />
          </image>
       </ImageView>
     
