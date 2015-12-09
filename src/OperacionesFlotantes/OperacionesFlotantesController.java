@@ -51,24 +51,32 @@ public class OperacionesFlotantesController implements Initializable {
 
     @FXML
     private void calcular() {
+        try{
         
-        if (interprete.checarParentesis(txtFuncion.getText())) {
-            interprete.setFuncion(txtFuncion.getText());
-            if(truncamiento.isSelected()){
-                interprete.setTipoValores(1);
-            }else{
-                interprete.setTipoValores(2);
+            if (interprete.checarParentesis(txtFuncion.getText())) {
+                interprete.setFuncion(txtFuncion.getText());
+                if(truncamiento.isSelected()){
+                    interprete.setTipoValores(1);
+                }else{
+                    interprete.setTipoValores(2);
+                }
+                getK();
+                txtResultado.setText(interprete.getResultado()+"");
+                setOperaciones();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Información");
+                alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
+
+                alert.showAndWait();
+
             }
-            getK();
-            txtResultado.setText(interprete.getResultado()+"");
-            setOperaciones();
-        } else {
+        }catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Información");
             alert.setContentText("Error de sintaxis. Verifique que haya escrito la función correctamente");
 
             alert.showAndWait();
-            
         }
     }
 
