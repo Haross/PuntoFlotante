@@ -6,6 +6,7 @@
 package PuntoFijo;
 
 import Interpretador.Interpretador;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -99,12 +100,13 @@ public class StaticController implements Initializable {
 
                 p =  f(P0);//P obtine se valor de P0 evaluado en la funcion
                 txtArea.setText(txtArea.getText()+"Iteracion " + contador//imprimimos los resultados en el textArea
-                        + "\n\t" + "\n\tF(p)= " + f(P0)+"\n\n");
+                        + "\n\t" + 
+                        "\n\tF(p)= " + interpretador.getFlotante(new BigDecimal(f(P0)))+"\n\n");
 
                 System.out.println("Iteracion: "+contador+"-------"+p+"------------");
 
                 if (Math.abs(p - P0) <= Tolerancia) {//se evalua la condicion que determina el fin del Programa
-                    txtRe.setText(p+"");
+                    txtRe.setText(interpretador.getFlotante(new BigDecimal(p))+"");
                     System.out.println("-------------final------------------");
                     System.out.println(p);
                     System.out.println("-------------------------------");

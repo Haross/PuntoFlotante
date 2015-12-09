@@ -8,8 +8,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="546.0" prefWidth="538.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewtonR.NewtonController">
     <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="546.0" stroke="WHITE" strokeType="INSIDE" width="550.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="240.0" layoutX="12.0" layoutY="14.0" stroke="#dadada" strokeType="INSIDE" width="524.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="469.0" stroke="WHITE" strokeType="INSIDE" width="538.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="240.0" layoutX="12.0" layoutY="14.0" stroke="#dadada" strokeType="INSIDE" width="514.0" />
       <Button fx:id="btnCalcular" layoutX="427.0" layoutY="33.0" mnemonicParsing="false" onAction="#calculoRaiz" prefHeight="25.0" prefWidth="73.0" text="Calcular" />
       <Label layoutX="369.0" layoutY="37.0" text=" = 0">
          <font>
@@ -39,13 +39,13 @@
          </font>
       </Label>
       <TextField fx:id="txtN" layoutX="447.0" layoutY="120.0" prefHeight="25.0" prefWidth="73.0" />
-      <Label layoutX="31.0" layoutY="213.0" text="Raíz = ">
+      <Label layoutX="31.0" layoutY="173.0" text="Raíz = ">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtRaiz" layoutX="80.0" layoutY="209.0" prefHeight="25.0" prefWidth="434.0" />
-      <TextArea fx:id="txtArea" editable="false" layoutX="12.0" layoutY="263.0" prefHeight="240.0" prefWidth="524.0" />
+      <TextField fx:id="txtRaiz" layoutX="80.0" layoutY="169.0" prefHeight="25.0" prefWidth="434.0" />
+      <TextArea fx:id="txtArea" editable="false" layoutX="12.0" layoutY="263.0" prefHeight="240.0" prefWidth="514.0" />
       <AnchorPane fx:id="anchorPane" layoutX="14.0" layoutY="172.0" prefHeight="287.0" prefWidth="514.0" visible="false" />
       <Label fx:id="lblArea" layoutX="78.0" layoutY="204.0" />
       <TextField fx:id="txtFuncionD" layoutX="85.0" layoutY="76.0" prefHeight="25.0" prefWidth="268.0" />
@@ -55,7 +55,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <RadioButton fx:id="rbtnTruncamiento" layoutX="278.0" layoutY="171.0" mnemonicParsing="false" text="Truncamiento">
+      <RadioButton fx:id="rbtnTruncamiento" layoutX="272.0" layoutY="213.0" mnemonicParsing="false" text="Truncamiento">
          <toggleGroup>
             <ToggleGroup fx:id="opc" />
          </toggleGroup>
@@ -63,17 +63,17 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="rbtnRedondeo" layoutX="422.0" layoutY="171.0" mnemonicParsing="false" text="Redondeo" toggleGroup="$opc">
+      <RadioButton fx:id="rbtnRedondeo" layoutX="416.0" layoutY="213.0" mnemonicParsing="false" text="Redondeo" toggleGroup="$opc">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </RadioButton>
-      <Label layoutX="49.0" layoutY="171.0" text="K= ">
+      <Label layoutX="43.0" layoutY="213.0" text="K= ">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtK" layoutX="78.0" layoutY="167.0" prefHeight="25.0" prefWidth="181.0" />
+      <TextField fx:id="txtK" layoutX="72.0" layoutY="209.0" prefHeight="25.0" prefWidth="181.0" />
       <Button layoutX="236.0" layoutY="515.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="25.0" prefWidth="73.0" text="Borrar" />
    </children>
 </AnchorPane>

@@ -153,7 +153,8 @@ public class FXMLBiseccionController implements Initializable {
                 }
                 //Esta condición se puso por si se quiere obtener el valor de una P especifica
                 if(n == i){
-                    txtRaiz.setText(p+"");
+                    txtRaiz.setText(interpretador.getFlotante(new BigDecimal(p))+"");
+    
                     return;
                 }
                 i = i+1;

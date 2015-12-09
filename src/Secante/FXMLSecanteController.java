@@ -6,6 +6,7 @@
 package Secante;
 
 import Interpretador.Interpretador;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -174,10 +175,12 @@ public class FXMLSecanteController {
                 int aux = i-1;
 
                 txtArea.setText(txtArea.getText()+"Iteracion " + aux
-                        + "\n\t" + "P= " + p+"\n\tF(p)= " + f(p)+"\n\n");
+                        + "\n\t" + "P= " + interpretador.getFlotante(new BigDecimal(p))+
+                        "\n\tF(p)= " +interpretador.getFlotante(new BigDecimal(f(p)))+"\n\n");
 
                 if (Math.abs(p - p1) < tol) {
-                    txtRaiz.setText(p + "");
+                    txtRaiz.setText(interpretador.getFlotante(new BigDecimal(p))+"");
+                 
                     return;
                 }
                 i= i + 1;
