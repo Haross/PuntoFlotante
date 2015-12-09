@@ -1,6 +1,7 @@
 package NewtonR;
 
 import Interpretador.Interpretador;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -158,7 +159,6 @@ public class NewtonController implements Initializable {
                     ecuacion = ecuacion.replace("f(P0)", aux2);
                 }else{
                     double aux = f(P0);
-
                     ecuacion = ecuacion.replace("f(P0)", ""+aux);
                 }
                 if(fd(P0)<0){
@@ -185,15 +185,18 @@ public class NewtonController implements Initializable {
                 P = in.getResultado();
                 System.out.println(P);
                  txtArea.setText(txtArea.getText()+"\n\tIteracion " + i
-                + "\n\t" + "P= " +P+"\n\t" + "P0= " + P0);
+                + "\n\t" + "P= " +interpretador.getFlotante(new BigDecimal(P))+"\n\t" + 
+                         "P0= " + interpretador.getFlotante(new BigDecimal(P0)));
                 if (Math.abs(P - P0) < tol) {
-                    txtRaiz.setText(P+"");
+                    txtRaiz.setText(interpretador.getFlotante(new BigDecimal(P))+"");
+                //    txtRaiz.setText(P+"");
                      return;
                 }
-
+                
                 i = i +1;
                 P0 = P;
             }
+            
         }catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Información");
