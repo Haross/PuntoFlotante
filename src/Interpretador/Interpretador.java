@@ -150,7 +150,7 @@ public class Interpretador {
             }}
         }
         resultado = Double.parseDouble(Operandos.peek());
-        return getValue(resultado);
+        return resultado;
     }
 
     /**
@@ -171,22 +171,26 @@ public class Interpretador {
     private double evaluar(String op, String n2, String n1) {
         BigDecimal num1 = new BigDecimal(n1);
         BigDecimal num2 = new BigDecimal(n2);
+        System.out.println("start getV");
         num1 = getValue(num1);
         num2 = getValue(num2);
+        System.out.println("finish getV");
         BigDecimal operacion = new BigDecimal(0);
 
         switch(op){
             case "+":
                 operacion = num1.add(num2);
-                expresiones.add(num1+" + "+num2 +" = " + getValue(operacion) );
+                
+                System.out.println("operaciones1" +operacion);
+                expresiones.add(getFlotante(new BigDecimal(n1))+" + "+getFlotante(new BigDecimal(n2)) +" = " + getFlotante(operacion) );
                 break;
             case "-":
                 operacion = num1.subtract(num2); 
-                expresiones.add(num1+" - "+num2 +" = " + getValue(operacion));
+                expresiones.add(getFlotante(new BigDecimal(n1))+" - "+getFlotante(new BigDecimal(n2)) +" = " + getFlotante(operacion) );
                 break;
             case "*":
                 operacion = num1.multiply(num2);
-                expresiones.add(num1+" * "+num2 +" = " + getValue(operacion) );
+                expresiones.add(getFlotante(new BigDecimal(n1))+" * "+getFlotante(new BigDecimal(n2)) +" = " + getFlotante(operacion) );
                 break;   
             case "/":
                 MathContext mc = new MathContext(k, RoundingMode.DOWN);
@@ -195,13 +199,13 @@ public class Interpretador {
                    
                 }
                operacion = num1.divide(num2, mc);
-                expresiones.add(num1+" / "+num2 +" = " + getValue(operacion) );
+                expresiones.add(getFlotante(new BigDecimal(n1))+" / "+getFlotante(new BigDecimal(n2)) +" = " + getFlotante(operacion) );
                 break;
             case "^":
                 double oper = getValue(Math.pow(num1.doubleValue(),num2.doubleValue())); 
    
                 //operacion = num1.pow(num2.intValue());
-                expresiones.add(num1+"^"+num2 +" = " + getValue(oper) );
+                expresiones.add(getFlotante(new BigDecimal(n1))+" ^ "+num2 +" = " + getFlotante(operacion) );
                 return oper;
                       
         }
@@ -279,23 +283,7 @@ public class Interpretador {
     public double getValue(double numero) {
         BigDecimal a = new BigDecimal(numero+"");
         return getValue(a).doubleValue();
-       /* switch (tipo){
-            case 1: 
-                
-                 if (numero > 0) {
-                numero = Math.floor(numero * Math.pow(10, k)) / Math.pow(10, k);
-            } else {
-                numero = Math.ceil(numero * Math.pow(10, k)) / Math.pow(10, k);
-            }
-            return numero;
-            case 2: 
-                int cifras = (int) Math.pow(10, k);
-            return Math.rint(numero * cifras) / cifras;
-            case 3: 
-            default:
-                return numero;
-               
-        }*/
+
  
     }
     /**
@@ -309,6 +297,112 @@ public class Interpretador {
     public BigDecimal getValue(BigDecimal numero) {
         switch (tipo){
             case 1: 
+                String ec =  getFlotante(numero);
+                String[] ecs = ec.split("E");
+                System.out.println("splitE");
+                if(ecs.length == 2){
+                   //numero = new BigDecimal(evaluar("*", ecs[0],ecs[1])); 
+                    System.out.println(ecs[0]+" "+ecs[1]);
+                    BigDecimal nume1 = new BigDecimal(ecs[0]);
+                    BigDecimal nume2 = new BigDecimal(ecs[1]);
+                    
+                   numero = nume1.multiply( new BigDecimal(   Math.pow((double) 10,nume2.doubleValue())  ));
+                    System.out.println(numero);
+                    System.out.println("calculo");
+                   return numero;
+                }
+                
+            return numero.setScale(k, RoundingMode.DOWN);
+            case 2: 
+                 String ec2 =  getFlotante(numero);
+                String[] ecs2 = ec2.split("E");
+                if(ecs2.length == 2){
+                   //numero = new BigDecimal(evaluar("*", ecs2[0],ecs2[1])); 
+                  BigDecimal nume1 = new BigDecimal(ecs2[0]);
+                    BigDecimal nume2 = new BigDecimal(ecs2[1]);
+                  numero = nume1.multiply( new BigDecimal(   Math.pow((double) 10,nume2.doubleValue())  ));
+                    System.out.println("calculo redondeo");
+                   return numero;
+                }
+                return numero.setScale(k, BigDecimal.ROUND_HALF_UP);
+            case 3: 
+            default:
+                return numero;
+               
+        }
+ 
+    }
+    
+
+    
+    
+    public String getFlotante(BigDecimal a){
+        	System.out.println("start getFlotante");
+                
+		int cont = 0;
+		String  ec = a+"";
+		if(a.doubleValue() != 0){
+                    System.out.println("if 0");
+			boolean band = true;
+			String[] au1x = ec.split("\\.");
+			
+	while(band){
+            System.out.println("while");
+            System.out.println(a);
+		String[] aux = ec.split("\\.");
+
+		if(aux.length == 2){
+					
+			if(aux[1].matches("0.*")&& aux[0].matches("0")){
+                            System.out.println("matches 0.*");
+				if(a.doubleValue() <0.1){
+					System.out.println("mul");
+					a = a.multiply(new BigDecimal(10));
+					ec = a+"";
+					cont--;
+				}
+			}else{
+				if(aux[0].matches("0") ||aux[0].matches("-0"))
+				band = false;
+				else{
+					System.out.println("div");
+				a = a.divide(new BigDecimal(10));
+				cont++;
+				System.out.println("matches 0.* ending else");
+					ec = a+"";
+					
+				}
+					
+			}
+
+			
+		}else{
+			if(a.doubleValue()>1){
+				System.out.println("div");
+				a = a.divide(new BigDecimal(10));
+				cont++;
+			}else{
+				band = false;
+			}
+			
+		}
+	
+
+	}}
+	//System.out.println(a+"E"+cont);
+        //System.out.println(getFk(a));
+        String ecuacion = getFk(a)+"E"+cont;
+         ecuacion = ecuacion.replace("E0", " ");
+        //System.out.println(ecuacion +"ex");
+        return ecuacion;
+
+	}
+    
+    
+    public BigDecimal getFk( BigDecimal numero){
+        System.out.println("start getFK");
+        switch (tipo){
+            case 1: 
             return numero.setScale(k, RoundingMode.DOWN);
             case 2: 
                 
@@ -318,8 +412,7 @@ public class Interpretador {
                 return numero;
                
         }
- 
-    }
+    }    
 
 
 }

@@ -6,6 +6,7 @@
 package Biseccion;
 
 import Interpretador.Interpretador;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -133,18 +134,21 @@ public class FXMLBiseccionController implements Initializable {
                 double FP = f(p);
 
                 txtArea.setText(txtArea.getText()+"Iteracion " + i
-                        + "\n\t" + "P= " + p+"\n\tF(p)= " + f(p)+"\n\ta= " + a+"\n\tb= " + b+
-                        "\n\tF(a)= " + f(a)+"\n\n");
+                        + "\n\t" + "P= " + interpretador.getFlotante(new BigDecimal(p))+
+                        "\n\tF(p)= " + interpretador.getFlotante(new BigDecimal(f(p)))
+                        +"\n\ta= " + interpretador.getFlotante(new BigDecimal(a))+
+                        "\n\tb= " + interpretador.getFlotante(new BigDecimal(b))+
+                        "\n\tF(a)= " +interpretador.getFlotante(new BigDecimal(f(a)))+"\n\n");
 
                 System.out.println("-------Iteracion " + i + "--------");
-                System.out.println("P= " + p);
-                System.out.println("F(p)= " + f(p));
-                System.out.println("a= " + a);
-                System.out.println("b= " + b);
-                System.out.println("F(a)= " + f(a));
+                System.out.println("P= " + interpretador.getFlotante(new BigDecimal(p)));
+                System.out.println("F(p)= " + interpretador.getFlotante(new BigDecimal(f(p))));
+                System.out.println("a= " + interpretador.getFlotante(new BigDecimal(a)));
+                System.out.println("b= " + interpretador.getFlotante(new BigDecimal(b)));
+                System.out.println("F(a)= " + interpretador.getFlotante(new BigDecimal(f(a))));
                 System.out.println("---------------------------");
                 if(FP == 0 || (b-a)/2 < tol){
-                    txtRaiz.setText(p+"");
+                    txtRaiz.setText(interpretador.getFlotante(new BigDecimal(p))+"");
                     return;
                 }
                 //Esta condición se puso por si se quiere obtener el valor de una P especifica

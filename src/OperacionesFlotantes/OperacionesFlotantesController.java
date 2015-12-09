@@ -6,6 +6,7 @@
 package OperacionesFlotantes;
 
 import Interpretador.Interpretador;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -61,7 +62,7 @@ public class OperacionesFlotantesController implements Initializable {
                     interprete.setTipoValores(2);
                 }
                 getK();
-                txtResultado.setText(interprete.getResultado()+"");
+                txtResultado.setText(interprete.getFlotante(new BigDecimal(interprete.getResultado()))+"");
                 setOperaciones();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
