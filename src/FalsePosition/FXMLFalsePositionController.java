@@ -59,7 +59,7 @@ public class FXMLFalsePositionController implements Initializable {
     private void getK(){
         if(!"".equals(txtK.getText())){
             interpretador.setK(Integer.parseInt(txtK.getText()));
-            
+             in.setK(Integer.parseInt(txtK.getText()));
         }
     }
     
